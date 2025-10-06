@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二課：數據控制及數據組織 - 互動溫習</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap');
+        
+        .font-chinese {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-success {
+            animation: pulseSuccess 0.6s ease-in-out;
+        }
+        
+        .pulse-error {
+            animation: pulseError 0.6s ease-in-out;
+        }
+        
+        @keyframes pulseSuccess {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); background-color: #10b981; }
+        }
+        
+        @keyframes pulseError {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); background-color: #ef4444; }
+        }
+    </style>
+</head>
+<body class="font-chinese bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-center">新界喇沙中學 資訊及通訊科技科</h1>
+            <p class="text-center text-xl mt-2 opacity-90">第二課：數據控制及數據組織 - 互動溫習</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center space-x-2 md:space-x-4 py-3">
+                <button onclick="showSection('overview')" class="nav-btn px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300">概覽</button>
+                <button onclick="showSection('validation')" class="nav-btn px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 hover:bg-purple-100 dark:hover:bg-purple-900">數據有效性檢驗</button>
+                <button onclick="showSection('types')" class="nav-btn px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 hover:bg-purple-100 dark:hover:bg-purple-900">數據類型</button>
+                <button onclick="showSection('verification')" class="nav-btn px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 hover:bg-purple-100 dark:hover:bg-purple-900">數據驗證</button>
+                <button onclick="showSection('quiz')" class="nav-btn px-4 py-2 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 hover:bg-purple-100 dark:hover:bg-purple-900">測驗</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="bg-gray-200 dark:bg-gray-700 h-2">
+        <div id="progressBar" class="bg-gradient-to-r from-purple-500 to-blue-500 h-2 transition-all duration-300" style="width: 0%"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Overview Section -->
+        <section id="overview" class="section fade-in">
+            <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 md:p-8 shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">📊 課程概覽</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-purple-600 dark:text-purple-400">🎯 學習目標</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <li>• 理解數據控制的重要性</li>
+                            <li>• 掌握各種數據有效性檢驗方法</li>
+                            <li>• 認識不同數據類型及其用途</li>
+                            <li>• 學習數據驗證技術</li>
+                            <li>• 了解檢查數位和奇偶檢測</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400">📚 主要概念</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+                                <span>無用輸入，無用輸出 (GIGO)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+                                <span>數據有效性檢驗</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="w-3 h-3 bg-blue-500 rounded-full"></span>
+                                <span>數據類型檢查</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="w-3 h-3 bg-purple-500 rounded-full"></span>
+                                <span>數據驗證方法</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-orange-600 dark:text-orange-400">⚠️ 重要提醒：GIGO 原則</h3>
+                    <div class="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 p-4 rounded">
+                        <p class="text-gray-700 dark:text-gray-300">
+                            <strong>「無用輸入，無用輸出」</strong>指輸入不可靠或不協調的數據用作數據分析，導致無法得出有用的輸出結果。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Validation Section -->
+        <section id="validation" class="section hidden">
+            <div class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 md:p-8 shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">✅ 數據有效性檢驗</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-green-600 dark:text-green-400">檢驗類型</h3>
+                        <div class="space-y-4">
+                            <div class="validation-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200" onclick="showValidationExample('completeness')">
+                                <h4 class="font-semibold text-purple-600 dark:text-purple-400">完整性檢查</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">確保必填欄位中有數據</p>
+                            </div>
+                            <div class="validation-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200" onclick="showValidationExample('fixed')">
+                                <h4 class="font-semibold text-blue-600 dark:text-blue-400">固定值檢查</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">確保數據只能來自特定值</p>
+                            </div>
+                            <div class="validation-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200" onclick="showValidationExample('type')">
+                                <h4 class="font-semibold text-green-600 dark:text-green-400">類型檢查</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">確保數據必須為特定類型</p>
+                            </div>
+                            <div class="validation-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200" onclick="showValidationExample('range')">
+                                <h4 class="font-semibold text-orange-600 dark:text-orange-400">範圍檢查</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">確保數據位於指定範圍內</p>
+                            </div>
+                            <div class="validation-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200" onclick="showValidationExample('length')">
+                                <h4 class="font-semibold text-red-600 dark:text-red-400">長度檢查</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">確保數據字符數在指定範圍內</p>
+                            </div>
+                            <div class="validation-card bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200" onclick="showValidationExample('format')">
+                                <h4 class="font-semibold text-indigo-600 dark:text-indigo-400">格式檢查</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">確保數據採用特定格式</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400">互動示例</h3>
+                        <div id="validationExample" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                            <p class="text-gray-600 dark:text-gray-400 text-center">點擊左側的檢驗類型來查看示例</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI Elements for Validation -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-600 dark:text-purple-400">用戶界面元素</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <h4 class="font-semibold mb-2">下拉式選單</h4>
+                            <select class="w-full p-2 border rounded text-base">
+                                <option>男性</option>
+                                <option>女性</option>
+                            </select>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">固定值檢查</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <h4 class="font-semibold mb-2">單選按鈕</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" class="mr-2">
+                                    <span>男性</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="gender" class="mr-2">
+                                    <span>女性</span>
+                                </label>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">固定值檢查</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <h4 class="font-semibold mb-2">日期選擇器</h4>
+                            <input type="date" class="w-full p-2 border rounded text-base">
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">類型和格式檢查</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Types Section -->
+        <section id="types" class="section hidden">
+            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 md:p-8 shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">🔢 數據類型</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="data-type-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" onclick="showTypeExample('integer')">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-blue-600 dark:text-blue-400">整數</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">正數或負數，無小數點</p>
+                                </div>
+                                <div class="text-2xl">🔢</div>
+                            </div>
+                            <div class="mt-3 text-sm">
+                                <strong>例子：</strong> 74, -29<br>
+                                <strong>用途：</strong> 學生人數、年齡
+                            </div>
+                        </div>
+                        
+                        <div class="data-type-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" onclick="showTypeExample('float')">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-green-600 dark:text-green-400">浮點數/實數</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">可有小數點和小數位</p>
+                                </div>
+                                <div class="text-2xl">📊</div>
+                            </div>
+                            <div class="mt-3 text-sm">
+                                <strong>例子：</strong> 2.09, 1.00<br>
+                                <strong>用途：</strong> 學生分數、身高
+                            </div>
+                        </div>
+                        
+                        <div class="data-type-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" onclick="showTypeExample('string')">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-purple-600 dark:text-purple-400">字串/文字</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">由各種字符組成</p>
+                                </div>
+                                <div class="text-2xl">📝</div>
+                            </div>
+                            <div class="mt-3 text-sm">
+                                <strong>例子：</strong> "RA^1$", "日，月"<br>
+                                <strong>用途：</strong> 姓名、地址
+                            </div>
+                        </div>
+                        
+                        <div class="data-type-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" onclick="showTypeExample('boolean')">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-red-600 dark:text-red-400">布爾</h3>
+                                    <p class="text-gray-600 dark:text-gray-400">只能是 TRUE 或 FALSE</p>
+                                </div>
+                                <div class="text-2xl">✅</div>
+                            </div>
+                            <div class="mt-3 text-sm">
+                                <strong>例子：</strong> TRUE, FALSE<br>
+                                <strong>用途：</strong> 是否合格、是否在世
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-orange-600 dark:text-orange-400">類型檢查練習</h3>
+                        <div id="typeExample" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">輸入一個數值：</label>
+                                    <input id="numberInput" type="text" class="w-full p-3 border rounded-lg text-base" placeholder="例如：25 或 3.14">
+                                    <button onclick="checkDataType()" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200">檢查類型</button>
+                                </div>
+                                <div id="typeResult" class="hidden p-4 rounded-lg"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Parity Check Demo -->
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold mb-4 text-indigo-600 dark:text-indigo-400">奇偶檢測示例</h3>
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2">輸入二進制代碼：</label>
+                                        <input id="binaryInput" type="text" class="w-full p-3 border rounded-lg text-base" placeholder="例如：10101010">
+                                        <button onclick="checkParity()" class="mt-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors duration-200">檢查奇偶性</button>
+                                    </div>
+                                    <div id="parityResult" class="hidden p-4 rounded-lg"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification Section -->
+        <section id="verification" class="section hidden">
+            <div class="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 md:p-8 shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">🔐 數據驗證</h2>
+                
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <div class="text-center mb-4">
+                            <div class="text-4xl mb-2">🔄</div>
+                            <h3 class="text-lg font-semibold text-blue-600 dark:text-blue-400">輸入數據兩次</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-center mb-4">操作員須輸入相同的數據兩次</p>
+                        <div class="space-y-3">
+                            <input type="text" placeholder="第一次輸入" class="w-full p-2 border rounded text-base">
+                            <input type="text" placeholder="第二次輸入" class="w-full p-2 border rounded text-base">
+                            <button class="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">驗證</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <div class="text-center mb-4">
+                            <div class="text-4xl mb-2">👥</div>
+                            <h3 class="text-lg font-semibold text-green-600 dark:text-green-400">雙重數據輸入</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-center mb-4">由兩位操作員分別輸入相同的數據</p>
+                        <div class="space-y-3">
+                            <div class="text-sm text-gray-500">操作員 A：</div>
+                            <input type="text" placeholder="操作員 A 輸入" class="w-full p-2 border rounded text-base">
+                            <div class="text-sm text-gray-500">操作員 B：</div>
+                            <input type="text" placeholder="操作員 B 輸入" class="w-full p-2 border rounded text-base">
+                            <button class="w-full px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors duration-200">比較</button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <div class="text-center mb-4">
+                            <div class="text-4xl mb-2">📋</div>
+                            <h3 class="text-lg font-semibold text-purple-600 dark:text-purple-400">校對數據</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-center mb-4">由另一位操作員比較輸入數據和原始檔案</p>
+                        <div class="space-y-3">
+                            <div class="text-sm text-gray-500">原始檔案：</div>
+                            <div class="p-2 bg-gray-100 dark:bg-gray-700 rounded">Hong Kong University</div>
+                            <div class="text-sm text-gray-500">輸入數據：</div>
+                            <input type="text" placeholder="輸入數據" class="w-full p-2 border rounded text-base">
+                            <button class="w-full px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors duration-200">校對</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Input Errors -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-red-600 dark:text-red-400">常見數據輸入錯誤</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border-l-4 border-red-500">
+                            <h4 class="font-semibold text-red-600 dark:text-red-400">數據來源錯誤</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">數據來源提供了不正確的數據</p>
+                            <p class="text-xs text-gray-500 mt-1">例：用戶提供不存在的電子郵件地址</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border-l-4 border-orange-500">
+                            <h4 class="font-semibold text-orange-600 dark:text-orange-400">轉錄錯誤</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">數據被誤讀、誤聽或誤植</p>
+                            <p class="text-xs text-gray-500 mt-1">例：將「冶」打錯為「治」</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border-l-4 border-yellow-500">
+                            <h4 class="font-semibold text-yellow-600 dark:text-yellow-400">換位錯誤</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">數據位置不正確</p>
+                            <p class="text-xs text-gray-500 mt-1">例：「$15」變成「$51」</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section hidden">
+            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 md:p-8 shadow-lg">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">🧩 互動測驗</h2>
+                
+                <div class="mb-6 text-center">
+                    <div class="inline-flex items-center space-x-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                        <div>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">進度：</span>
+                            <span id="quizProgress" class="font-semibold">0/15</span>
+                        </div>
+                        <div>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">分數：</span>
+                            <span id="quizScore" class="font-semibold text-green-600 dark:text-green-400">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="quizContainer" class="max-w-4xl mx-auto">
+                    <div id="quizCard" class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-8">
+                        <div id="questionContainer">
+                            <!-- Questions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-6">
+                    <button id="startQuizBtn" onclick="startQuiz()" class="px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105">
+                        開始測驗
+                    </button>
+                    <button id="nextQuestionBtn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors duration-200">
+                        下一題
+                    </button>
+                    <button id="restartQuizBtn" onclick="restartQuiz()" class="hidden px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors duration-200">
+                        重新開始
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 新界喇沙中學 資訊及通訊科技科</p>
+            <p class="text-sm text-gray-400 mt-2">互動學習平台 - 數據控制及數據組織</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode detection
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // Navigation functionality
+        let currentSection = 'overview';
+        
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            
+            // Show selected section
+            document.getElementById(section).classList.remove('hidden');
+            document.getElementById(section).classList.add('fade-in');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-100', 'dark:bg-purple-900', 'text-purple-700', 'dark:text-purple-300');
+            });
+            event.target.classList.add('bg-purple-100', 'dark:bg-purple-900', 'text-purple-700', 'dark:text-purple-300');
+            
+            currentSection = section;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const sections = ['overview', 'validation', 'types', 'verification', 'quiz'];
+            const currentIndex = sections.indexOf(currentSection);
+            const progress = ((currentIndex + 1) / sections.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Validation examples
+        function showValidationExample(type) {
+            const examples = {
+                completeness: {
+                    title: '完整性檢查',
+                    description: '確保必填欄位中有數據',
+                    example: `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">姓名 <span class="text-red-500">*</span></label>
+                                <input type="text" class="w-full p-2 border rounded text-base" placeholder="必須填寫">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">電話 <span class="text-red-500">*</span></label>
+                                <input type="text" class="w-full p-2 border rounded text-base" placeholder="必須填寫">
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">所有標有 * 的欄位必須填寫</p>
+                        </div>
+                    `
+                },
+                fixed: {
+                    title: '固定值檢查',
+                    description: '確保數據只能來自一系列特定的值',
+                    example: `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">性別</label>
+                                <select class="w-full p-2 border rounded text-base">
+                                    <option value="">請選擇</option>
+                                    <option value="M">男性</option>
+                                    <option value="F">女性</option>
+                                </select>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">只能選擇 "M" 或 "F"</p>
+                        </div>
+                    `
+                },
+                type: {
+                    title: '類型檢查',
+                    description: '確保數據必須為特定類型',
+                    example: `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">年齡</label>
+                                <input type="number" class="w-full p-2 border rounded text-base" placeholder="必須是數字">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">出生日期</label>
+                                <input type="date" class="w-full p-2 border rounded text-base">
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">年齡必須是數字，日期必須是有效日期格式</p>
+                        </div>
+                    `
+                },
+                range: {
+                    title: '範圍檢查',
+                    description: '確保數據必須位於指定範圍內',
+                    example: `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">年齡（13-100歲）</label>
+                                <input type="number" min="13" max="100" class="w-full p-2 border rounded text-base" placeholder="13-100">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">分數（0-100分）</label>
+                                <input type="number" min="0" max="100" step="0.1" class="w-full p-2 border rounded text-base" placeholder="0-100">
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">數值必須在指定範圍內</p>
+                        </div>
+                    `
+                },
+                length: {
+                    title: '長度檢查',
+                    description: '確保數據的字符數必須在指定範圍內',
+                    example: `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">電話號碼（8位數字）</label>
+                                <input type="text" maxlength="8" pattern="[0-9]{8}" class="w-full p-2 border rounded text-base" placeholder="必須是8位數字">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">密碼（8-20字符）</label>
+                                <input type="password" minlength="8" maxlength="20" class="w-full p-2 border rounded text-base" placeholder="8-20字符">
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">字符長度必須符合要求</p>
+                        </div>
+                    `
+                },
+                format: {
+                    title: '格式檢查',
+                    description: '確保數據必須採用特定格式',
+                    example: `
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">電子郵件</label>
+                                <input type="email" class="w-full p-2 border rounded text-base" placeholder="必須包含@符號">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">網址</label>
+                                <input type="url" class="w-full p-2 border rounded text-base" placeholder="必須以http://或https://開始">
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">數據必須符合特定格式要求</p>
+                        </div>
+                    `
+                }
+            };
+
+            const example = examples[type];
+            document.getElementById('validationExample').innerHTML = `
+                <h4 class="text-lg font-semibold mb-2 text-purple-600 dark:text-purple-400">${example.title}</h4>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">${example.description}</p>
+                ${example.example}
+            `;
+        }
+
+        // Data type checking
+        function checkDataType() {
+            const input = document.getElementById('numberInput').value.trim();
+            const resultDiv = document.getElementById('typeResult');
+            
+            if (!input) {
+                showResult(resultDiv, '請輸入一個值', 'error');
+                return;
+            }
+            
+            let type, explanation, isValid = true;
+            
+            if (input.toLowerCase() === 'true' || input.toLowerCase() === 'false') {
+                type = '布爾';
+                explanation = '這是一個布爾值（TRUE 或 FALSE）';
+            } else if (/^-?\d+$/.test(input)) {
+                type = '整數';
+                explanation = '這是一個整數（沒有小數點的數字）';
+            } else if (/^-?\d*\.\d+$/.test(input)) {
+                type = '浮點數';
+                explanation = '這是一個浮點數（帶小數點的數字）';
+            } else if (isNaN(input)) {
+                type = '字串';
+                explanation = '這是一個字串（文字數據）';
+            } else {
+                type = '無效格式';
+                explanation = '輸入格式不正確';
+                isValid = false;
+            }
+            
+            showResult(resultDiv, `數據類型: ${type}<br>${explanation}`, isValid ? 'success' : 'error');
+        }
+
+        // Parity checking
+        function checkParity() {
+            const input = document.getElementById('binaryInput').value.trim();
+            const resultDiv = document.getElementById('parityResult');
+            
+            if (!/^[01]+$/.test(input)) {
+                showResult(resultDiv, '請輸入有效的二進制代碼（只能包含0和1）', 'error');
+                return;
+            }
+            
+            const ones = input.split('').filter(bit => bit === '1').length;
+            const isEven = ones % 2 === 0;
+            
+            const result = `
+                <strong>二進制代碼:</strong> ${input}<br>
+                <strong>1的總數:</strong> ${ones}<br>
+                <strong>奇偶性:</strong> ${isEven ? '偶數' : '奇數'}<br>
+                <strong>偶數檢測:</strong> ${isEven ? '通過' : '失敗'}<br>
+                <strong>奇數檢測:</strong> ${!isEven ? '通過' : '失敗'}
+            `;
+            
+            showResult(resultDiv, result, 'info');
+        }
+
+        function showResult(element, message, type) {
+            element.className = `p-4 rounded-lg ${type === 'success' ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300' : 
+                                                  type === 'error' ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300' : 
+                                                  'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'}`;
+            element.innerHTML = message;
+            element.classList.remove('hidden');
+        }
+
+        // Quiz functionality
+        let quizData = [
+            {
+                question: "「無用輸入，無用輸出」的英文縮寫是什麼？",
+                options: ["GIGO", "GOGO", "GIGI", "GAGA"],
+                correct: 0,
+                explanation: "GIGO 代表 'Garbage In, Garbage Out'，指輸入不可靠的數據會導致無用的輸出結果。"
+            },
+            {
+                question: "以下哪項是完整性檢查的例子？",
+                options: ["確保電郵地址包含@符號", "確保必填欄位有數據", "確保年齡是數字", "確保性別只能是M或F"],
+                correct: 1,
+                explanation: "完整性檢查確保必填欄位中有數據，不允許空白。"
+            },
+            {
+                question: "要檢驗香港身份證號碼的有效性，哪種方法使用檢查數位？",
+                options: ["確保號碼開首的字符為英文字母", "確保號碼的加權和可被11整除", "確保號碼不超過9個字符", "確保號碼包含括號"],
+                correct: 1,
+                explanation: "檢查數位是通過特定算法（如加權和可被11整除）來驗證數據的有效性。"
+            },
+            {
+                question: "二進制代碼 '1110 1011' 中有多少個1？",
+                options: ["5", "6", "7", "8"],
+                correct: 1,
+                explanation: "數一數：1-1-1-0 1-0-1-1，總共有6個1。"
+            },
+            {
+                question: "下拉式選單主要用於哪種數據有效性檢驗？",
+                options: ["完整性檢查", "固定值檢查", "範圍檢查", "格式檢查"],
+                correct: 1,
+                explanation: "下拉式選單限制用戶只能從預設的選項中選擇，這是固定值檢查。"
+            },
+            {
+                question: "數據類型 '3.14' 屬於哪一種？",
+                options: ["整數", "浮點數", "字串", "布爾"],
+                correct: 1,
+                explanation: "3.14 是帶小數點的數字，屬於浮點數/實數類型。"
+            },
+            {
+                question: "以下哪項不是數據驗證的方法？",
+                options: ["輸入數據兩次", "雙重數據輸入", "校對數據", "類型檢查"],
+                correct: 3,
+                explanation: "類型檢查是數據有效性檢驗的方法，不是數據驗證方法。數據驗證主要包括輸入數據兩次、雙重數據輸入和校對數據。"
+            },
+            {
+                question: "奇偶檢測中，如果原始代碼有4個1，偶數檢測會添加什麼奇偶檢驗位？",
+                options: ["0", "1", "10", "11"],
+                correct: 0,
+                explanation: "偶數檢測要求1的總數為偶數。原始代碼已有4個1（偶數），所以添加0，保持總數為偶數。"
+            },
+            {
+                question: "範圍檢查確保什麼？",
+                options: ["數據有正確的格式", "數據在指定範圍內", "數據是特定類型", "數據不為空"],
+                correct: 1,
+                explanation: "範圍檢查確保數據的值在指定的最小值和最大值之間。"
+            },
+            {
+                question: "轉錄錯誤的例子是什麼？",
+                options: ["用戶提供錯誤的電郵地址", "將「冶」打錯為「治」", "將「$15」寫成「$51」", "電腦系統故障"],
+                correct: 1,
+                explanation: "轉錄錯誤是指數據被誤讀、誤聽或誤植，如將「冶」打錯為「治」。"
+            },
+            {
+                question: "小明在網上商店註冊帳戶時，系統要求他輸入出生年份，並設定只能輸入1950年至2010年之間的數值。當他輸入「2025」時，系統顯示錯誤訊息。這是使用了哪種數據有效性檢驗？",
+                options: ["完整性檢查", "範圍檢查", "格式檢查", "類型檢查"],
+                correct: 1,
+                explanation: "這是範圍檢查的例子。系統設定了年份的最小值（1950）和最大值（2010），當輸入的數值超出這個範圍時，就會觸發錯誤。"
+            },
+            {
+                question: "學校圖書館的借書系統在處理學生證號碼時，系統要求輸入8位數字的學生證號碼。當圖書管理員輸入「12345」（只有5位）時，系統拒絕接受。這個情況涉及了哪種檢驗？",
+                options: ["格式檢查", "長度檢查", "固定值檢查", "類型檢查"],
+                correct: 1,
+                explanation: "這是長度檢查的應用。系統要求學生證號碼必須是8位數字，而輸入的「12345」只有5位，不符合長度要求。"
+            },
+            {
+                question: "某銀行的ATM系統在處理轉帳時發生了數據傳輸錯誤。原本要轉帳的金額是$1,234，但由於換位錯誤變成了$1,324。為了防止這類錯誤，銀行應該使用哪種數據控制方法？",
+                options: ["只使用完整性檢查", "只使用檢查數位", "使用校對數據或雙重數據輸入", "只使用格式檢查"],
+                correct: 2,
+                explanation: "換位錯誤（數字位置調轉）需要透過數據驗證方法來防止，如校對數據或雙重數據輸入，讓不同操作員確認數據的正確性。"
+            },
+            {
+                question: "某醫院的病人資料系統要求醫護人員輸入病人的血型資料。系統設計了一個下拉選單，只允許選擇「A型」、「B型」、「AB型」或「O型」。護士嘗試輸入「C型」時發現無法輸入。在這個情況下，有關數據傳輸過程中，哪個二進制代碼'1001 0110'會在奇數檢測中通過？",
+                options: ["會通過，因為有4個1", "會通過，因為有5個1", "不會通過，因為有4個1", "不會通過，因為有5個1"],
+                correct: 1,
+                explanation: "計算'1001 0110'中1的個數：1-0-0-1 0-1-1-0，總共有4個1。奇數檢測要求1的總數為奇數，4是偶數，所以不會通過奇數檢測。但這裡有5個1（重新計數：第1、4、6、7位是1），5是奇數，所以會通過奇數檢測。"
+            },
+            {
+                question: "某線上購物網站在客戶結帳時，要求客戶輸入信用卡號碼兩次作確認。第一次客戶輸入「4532-1234-5678-9012」，第二次輸入「4532-1234-5678-9021」。系統發現兩次輸入不相同並要求重新輸入。同時，該網站的數據庫儲存客戶年齡時，如果客戶輸入「二十五歲」，系統會自動拒絕。這兩個情況分別使用了哪些數據控制方法？",
+                options: ["輸入數據兩次；格式檢查", "雙重數據輸入；類型檢查", "輸入數據兩次；類型檢查", "校對數據；範圍檢查"],
+                correct: 2,
+                explanation: "第一個情況是輸入數據兩次的驗證方法，要求用戶輸入相同數據兩次進行確認。第二個情況是類型檢查，因為年齡欄位要求數字類型，而「二十五歲」是文字字串，不符合數字類型要求。"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            answered = false;
+            document.getElementById('startQuizBtn').classList.add('hidden');
+            document.getElementById('restartQuizBtn').classList.add('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= quizData.length) {
+                showQuizResults();
+                return;
+            }
+
+            const question = quizData[currentQuestionIndex];
+            answered = false;
+            
+            document.getElementById('questionContainer').innerHTML = `
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-4">問題 ${currentQuestionIndex + 1}/${quizData.length}</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">${question.question}</p>
+                    <div class="space-y-3">
+                        ${question.options.map((option, index) => `
+                            <button onclick="selectAnswer(${index})" 
+                                    class="option-btn w-full text-left p-4 border-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 border-gray-200 dark:border-gray-600">
+                                ${String.fromCharCode(65 + index)}. ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+                <div id="explanation" class="hidden mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500"></div>
+            `;
+
+            updateQuizProgress();
+            document.getElementById('nextQuestionBtn').classList.add('hidden');
+        }
+
+        function selectAnswer(selectedIndex) {
+            if (answered) return;
+            
+            answered = true;
+            const question = quizData[currentQuestionIndex];
+            const options = document.querySelectorAll('.option-btn');
+            
+            options.forEach((btn, index) => {
+                if (index === question.correct) {
+                    btn.classList.add('border-green-500', 'bg-green-50', 'dark:bg-green-900/20', 'text-green-700', 'dark:text-green-300');
+                } else if (index === selectedIndex) {
+                    btn.classList.add('border-red-500', 'bg-red-50', 'dark:bg-red-900/20', 'text-red-700', 'dark:text-red-300');
+                }
+                btn.disabled = true;
+                btn.classList.add('cursor-not-allowed');
+            });
+
+            if (selectedIndex === question.correct) {
+                score++;
+                options[selectedIndex].classList.add('pulse-success');
+            } else {
+                options[selectedIndex].classList.add('pulse-error');
+            }
+
+            // Show explanation
+            document.getElementById('explanation').innerHTML = `
+                <strong>解釋：</strong> ${question.explanation}
+            `;
+            document.getElementById('explanation').classList.remove('hidden');
+
+            updateQuizProgress();
+            document.getElementById('nextQuestionBtn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function showQuizResults() {
+            const percentage = Math.round((score / quizData.length) * 100);
+            let message, color;
+            
+            if (percentage >= 80) {
+                message = "優秀！";
+                color = "text-green-600 dark:text-green-400";
+            } else if (percentage >= 60) {
+                message = "良好！";
+                color = "text-blue-600 dark:text-blue-400";
+            } else {
+                message = "需要加強！";
+                color = "text-orange-600 dark:text-orange-400";
+            }
+
+            document.getElementById('questionContainer').innerHTML = `
+                <div class="text-center">
+                    <div class="text-6xl mb-4">🎉</div>
+                    <h3 class="text-2xl font-bold mb-4 ${color}">${message}</h3>
+                    <div class="text-xl mb-4">
+                        你的分數：<span class="font-bold">${score}/${quizData.length}</span> (${percentage}%)
+                    </div>
+                    <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-4 mb-6">
+                        <div class="bg-gradient-to-r from-purple-500 to-blue-500 h-4 rounded-full transition-all duration-1000" 
+                             style="width: ${percentage}%"></div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        ${percentage >= 80 ? '恭喜你掌握了本課的重點內容！' : 
+                          percentage >= 60 ? '你對本課內容有不錯的理解，可以再復習一下錯誤的部分。' : 
+                          '建議你重新學習本課內容，再次挑戰測驗。'}
+                    </p>
+                </div>
+            `;
+
+            document.getElementById('nextQuestionBtn').classList.add('hidden');
+            document.getElementById('restartQuizBtn').classList.remove('hidden');
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        function updateQuizProgress() {
+            document.getElementById('quizProgress').textContent = `${currentQuestionIndex + 1}/${quizData.length}`;
+            document.getElementById('quizScore').textContent = score;
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

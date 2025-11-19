@@ -1,3 +1,7 @@
+---
+# 這一行非常重要，告訴 GitHub Pages 使用 Liquid 模板引擎處理此頁面
+layout: null
+---
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
 <head>
@@ -8,11 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
-        
         .font-chinese { font-family: 'Noto Sans TC', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
-        /* 自定義動畫 */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -26,29 +28,17 @@
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
-        /* 卡片入場動畫 */
         .card-enter {
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.6s forwards;
         }
-        
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
     </style>
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4F46E5', // Indigo 600
-                        secondary: '#0EA5E9', // Sky 500
-                    }
-                }
-            }
+            theme: { extend: { colors: { primary: '#4F46E5', secondary: '#0EA5E9', } } }
         }
     </script>
 </head>
@@ -59,7 +49,6 @@
             <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full mix-blend-overlay filter blur-xl animate-float"></div>
             <div class="absolute bottom-10 right-10 w-64 h-64 bg-pink-400 rounded-full mix-blend-overlay filter blur-2xl animate-float" style="animation-delay: 2s"></div>
         </div>
-
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-center md:text-left">
@@ -68,25 +57,16 @@
                     </div>
                     <h1 class="text-4xl md:text-6xl font-bold mb-2 tracking-tight">ICT 資訊及通訊科技</h1>
                     <h2 class="text-xl md:text-2xl text-indigo-100 font-light mb-6">Last Minute Revision Platform</h2>
-                    
                     <div class="flex flex-wrap gap-4 justify-center md:justify-start">
                         <div class="glass-effect px-4 py-2 rounded-lg flex items-center gap-3">
                             <div class="p-2 bg-green-500/20 rounded-full"><i class="ri-book-open-line text-green-300"></i></div>
                             <div class="text-left">
                                 <p class="text-xs text-indigo-200">可溫習章節</p>
-                                <p class="font-bold">3 個單元</p>
-                            </div>
-                        </div>
-                        <div class="glass-effect px-4 py-2 rounded-lg flex items-center gap-3">
-                            <div class="p-2 bg-orange-500/20 rounded-full"><i class="ri-timer-flash-line text-orange-300"></i></div>
-                            <div class="text-left">
-                                <p class="text-xs text-indigo-200">平均需時</p>
-                                <p class="font-bold">25 分鐘/課</p>
+                                <p class="font-bold">{{ site.data.lessons | size }} 個單元</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
                 <div class="hidden md:block opacity-90">
                     <i class="ri-macbook-line text-[150px] text-white/80 drop-shadow-lg"></i>
                 </div>
@@ -95,7 +75,6 @@
     </header>
 
     <main class="container mx-auto px-4 -mt-16 relative z-20 mb-auto">
-        
         <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 mb-10 border-b-4 border-indigo-500">
             <div class="flex items-start gap-4">
                 <div class="p-3 bg-indigo-100 dark:bg-indigo-900/50 rounded-full text-indigo-600 dark:text-indigo-400">
@@ -103,212 +82,78 @@
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-1">歡迎回來溫習！</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">
-                        選擇下方的課題卡片開始。系統包含重點筆記、互動練習以及模擬試題。
-                        <span class="hidden sm:inline">請確保你已準備好紙筆進行運算題。</span>
-                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">選擇下方的課題卡片開始。系統包含重點筆記、互動練習以及模擬試題。</p>
                 </div>
             </div>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
-
-            <article class="card-enter bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group overflow-hidden flex flex-col" style="animation-delay: 0.1s">
-                <div class="h-2 bg-emerald-500 w-full"></div>
+            {% for lesson in site.data.lessons %}
+            
+            {% assign bg_color = "bg-" | append: lesson.color | append: "-600" %}
+            {% assign light_bg = "bg-" | append: lesson.color | append: "-100" %}
+            {% assign text_color = "text-" | append: lesson.color | append: "-600" %}
+            
+            <article class="card-enter bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group overflow-hidden flex flex-col {% unless lesson.active %}opacity-70 border-dashed{% endunless %}" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
+                
+                <div class="h-2 w-full {{ bg_color }}"></div>
+                
                 <div class="p-6 flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
-                            <i class="ri-database-2-line text-3xl"></i>
+                        <div class="p-3 rounded-lg {{ light_bg }} dark:bg-opacity-20 {{ text_color }} dark:text-{{ lesson.color }}-400 group-hover:scale-110 transition-transform">
+                            <i class="{{ lesson.icon }} text-3xl"></i>
                         </div>
-                        <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-xs font-mono rounded text-slate-500">CH01</span>
+                        <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-xs font-mono rounded text-slate-500">{{ lesson.id }}</span>
                     </div>
                     
-                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-1">資訊系統簡介</h4>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">數據處理週期、資訊時代與社會影響</p>
+                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-1">{{ lesson.title }}</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">{{ lesson.desc }}</p>
                     
-                    <div class="space-y-2 mb-6 flex-1">
+                    <div class="space-y-2 mb-6 flex-1 {% unless lesson.active %}opacity-60{% endunless %}">
+                        {% for point in lesson.points %}
                         <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-emerald-500 mr-2"></i> 數據 vs 資訊
+                            <i class="ri-check-line {{ text_color }} dark:text-{{ lesson.color }}-400 mr-2"></i> {{ point }}
                         </div>
-                        <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-emerald-500 mr-2"></i> 資訊處理週期
-                        </div>
+                        {% endfor %}
                     </div>
 
                     <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4 pt-4 border-t border-slate-100 dark:border-slate-700">
-                        <span class="flex items-center"><i class="ri-questionnaire-line mr-1"></i> 15 題練習</span>
-                        <span class="flex items-center"><i class="ri-time-line mr-1"></i> ~25 分鐘</span>
+                        <span class="flex items-center">
+                            <i class="ri-questionnaire-line mr-1"></i> 
+                            {% if lesson.questions > 0 %} {{ lesson.questions }} 題練習 {% else %} 製作中 {% endif %}
+                        </span>
+                        <span class="flex items-center"><i class="ri-time-line mr-1"></i> ~{{ lesson.time }}</span>
                     </div>
 
-                    <a href="chapter1.html" class="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-center transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
+                    {% if lesson.active %}
+                    <a href="{{ lesson.link }}" class="w-full py-2.5 rounded-lg {{ bg_color }} hover:opacity-90 text-white font-medium text-center transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
                         開始溫習 <i class="ri-arrow-right-line transition-all"></i>
                     </a>
-                </div>
-            </article>
-
-            <article class="card-enter bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group overflow-hidden flex flex-col" style="animation-delay: 0.2s">
-                <div class="h-2 bg-blue-500 w-full"></div>
-                <div class="p-6 flex-1 flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
-                            <i class="ri-shield-check-line text-3xl"></i>
-                        </div>
-                        <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-xs font-mono rounded text-slate-500">CH02</span>
-                    </div>
-                    
-                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-1">數據控制及組織</h4>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">確保數據準確性與層次結構</p>
-                    
-                    <div class="space-y-2 mb-6 flex-1">
-                        <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-blue-500 mr-2"></i> 驗證 (Validation)
-                        </div>
-                        <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-blue-500 mr-2"></i> 核實 (Verification)
-                        </div>
-                        <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-blue-500 mr-2"></i> 奇偶檢測
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4 pt-4 border-t border-slate-100 dark:border-slate-700">
-                        <span class="flex items-center"><i class="ri-questionnaire-line mr-1"></i> 20 題練習</span>
-                        <span class="flex items-center"><i class="ri-time-line mr-1"></i> ~30 分鐘</span>
-                    </div>
-
-                    <a href="chapter2.html" class="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-center transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
-                        開始溫習 <i class="ri-arrow-right-line transition-all"></i>
-                    </a>
-                </div>
-            </article>
-
-            <article class="card-enter bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group overflow-hidden flex flex-col" style="animation-delay: 0.3s">
-                <div class="h-2 bg-violet-500 w-full"></div>
-                <div class="p-6 flex-1 flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-3 bg-violet-100 dark:bg-violet-900/30 rounded-lg text-violet-600 dark:text-violet-400 group-hover:scale-110 transition-transform">
-                            <i class="ri-binary-code-line text-3xl"></i>
-                        </div>
-                        <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-xs font-mono rounded text-slate-500">CH03</span>
-                    </div>
-                    
-                    <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-1">數據表示</h4>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">二進制、編碼系統與多媒體</p>
-                    
-                    <div class="space-y-2 mb-6 flex-1">
-                        <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-violet-500 mr-2"></i> 二進制/十六進制
-                        </div>
-                        <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-violet-500 mr-2"></i> ASCII 與 Unicode
-                        </div>
-                        <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line text-violet-500 mr-2"></i> 圖像與聲音文件
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-4 pt-4 border-t border-slate-100 dark:border-slate-700">
-                        <span class="flex items-center"><i class="ri-questionnaire-line mr-1"></i> 18 題練習</span>
-                        <span class="flex items-center"><i class="ri-time-line mr-1"></i> ~35 分鐘</span>
-                    </div>
-
-                    <a href="chapter3.html" class="w-full py-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-medium text-center transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
-                        開始溫習 <i class="ri-arrow-right-line transition-all"></i>
-                    </a>
-                </div>
-            </article>
-
-            <article class="card-enter bg-slate-50 dark:bg-slate-800/50 rounded-xl shadow-inner border border-dashed border-slate-300 dark:border-slate-600 flex flex-col opacity-80" style="animation-delay: 0.4s">
-                <div class="h-2 bg-slate-400 w-full"></div>
-                <div class="p-6 flex-1 flex flex-col">
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="p-3 bg-slate-200 dark:bg-slate-700 rounded-lg text-slate-500 dark:text-slate-400">
-                            <i class="ri-computer-line text-3xl"></i>
-                        </div>
-                        <span class="px-2 py-1 bg-slate-200 dark:bg-slate-700 text-xs font-mono rounded text-slate-500">CH04</span>
-                    </div>
-                    
-                    <h4 class="text-xl font-bold text-slate-600 dark:text-slate-300 mb-1">電腦系統基礎</h4>
-                    <p class="text-sm text-slate-500 dark:text-slate-500 mb-4">硬件與軟件的運作原理</p>
-                    
-                    <div class="space-y-2 mb-6 flex-1 opacity-60">
-                        <div class="flex items-center text-sm text-slate-500">
-                            <i class="ri-lock-2-line text-slate-400 mr-2"></i> 中央處理器 (CPU)
-                        </div>
-                        <div class="flex items-center text-sm text-slate-500">
-                            <i class="ri-lock-2-line text-slate-400 mr-2"></i> 記憶體與儲存裝置
-                        </div>
-                        <div class="flex items-center text-sm text-slate-500">
-                            <i class="ri-lock-2-line text-slate-400 mr-2"></i> 作業系統
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-xs text-slate-400 mb-4 pt-4 border-t border-slate-200 dark:border-slate-700">
-                        <span class="flex items-center"><i class="ri-hammer-line mr-1"></i> 製作中</span>
-                        <span class="flex items-center"><i class="ri-time-line mr-1"></i> 即將推出</span>
-                    </div>
-
+                    {% else %}
                     <button disabled class="w-full py-2.5 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-400 cursor-not-allowed font-medium text-center flex items-center justify-center gap-2">
                         即將推出
                     </button>
+                    {% endif %}
                 </div>
             </article>
-
+            {% endfor %}
         </div>
     </main>
 
     <footer class="bg-slate-900 text-slate-300 py-10 mt-auto border-t border-slate-800">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8 items-center text-center md:text-left">
-                <div>
-                    <h4 class="text-white font-bold text-lg mb-2">新界喇沙中學</h4>
-                    <p class="text-sm text-slate-400">資訊及通訊科技科 (ICT)</p>
-                    <p class="text-xs text-slate-500 mt-1">互動溫習系統 v2.0</p>
-                </div>
-                
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="hover:text-white transition-colors flex flex-col items-center group">
-                        <div class="p-2 bg-slate-800 rounded-full mb-1 group-hover:bg-indigo-600 transition-colors">
-                            <i class="ri-mail-send-line"></i>
-                        </div>
-                        <span class="text-xs">聯絡老師</span>
-                    </a>
-                    <a href="#" class="hover:text-white transition-colors flex flex-col items-center group">
-                        <div class="p-2 bg-slate-800 rounded-full mb-1 group-hover:bg-indigo-600 transition-colors">
-                            <i class="ri-folder-download-line"></i>
-                        </div>
-                        <span class="text-xs">下載試卷</span>
-                    </a>
-                </div>
-
-                <div class="text-sm md:text-right text-slate-500">
-                    <p>&copy; 2024 De La Salle Secondary School, N.T.</p>
-                    <p class="text-xs mt-1">Designed for Revision</p>
-                </div>
+            <div class="text-center">
+                <p>&copy; 2024 新界喇沙中學 資訊及通訊科技科.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Dark mode logic
         const html = document.documentElement;
-        
-        // Check system preference on load
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            html.classList.add('dark');
-        }
-
-        // Listen for system changes
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { html.classList.add('dark'); }
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                html.classList.add('dark');
-            } else {
-                html.classList.remove('dark');
-            }
+            if (event.matches) { html.classList.add('dark'); } else { html.classList.remove('dark'); }
         });
-
-        // Simple scroll reveal logic (optional, if you want more elements to fade in on scroll)
-        // Currently using CSS animation-delay for simplicity on load
     </script>
 </body>
 </html>

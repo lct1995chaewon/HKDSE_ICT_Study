@@ -1,87 +1,65 @@
-# _data/chapter1.yml (Based on HA1 Ch1.pdf)
+# _data/chapter1.yml
 
-# 1. 互動練習：軟硬件分類 (根據 PDF p.6-7)
+# --- 頁面頂部的 3 個重點卡片 ---
+key_points:
+  - title: "流程自動化"
+    desc: "減少人手操作，加快處理速度。"
+    icon: "ri-robot-line"
+    color: "green" # green, red, purple, blue
+  - title: "減少人為錯誤"
+    desc: "機器處理比人手計算更精準。"
+    icon: "ri-shield-check-line"
+    color: "red"
+  - title: "提升效率"
+    desc: "在短時間內處理大量數據。"
+    icon: "ri-timer-flash-line"
+    color: "purple"
+
+# --- 7個階段時間軸 (如果下一課沒有這個，就不要寫這段，模版會自動隱藏) ---
+timeline_stages:
+  - title: "數據收集 (Collection)"
+    desc: "獲取原始數據的過程。例如：問卷調查、感應器讀數。"
+  - title: "組織 (Organization)"
+    desc: "將數據分類以便處理。"
+    extra: "例子：將同一週拍攝的影片放入同一個資料夾"
+  - title: "儲存 (Storage)"
+    desc: "將數據保存在存儲媒體中（如硬碟、雲端）。"
+  - title: "處理 (Processing)"
+    desc: "將數據轉換為資訊。例如：計算總分、排序。"
+  - title: "分析 (Analysis)"
+    desc: "從已處理的數據提取有意義的資訊。"
+    extra: "例子：歸納氣候趨勢"
+  - title: "傳輸 (Transmission)"
+    desc: "在不同設備間發送數據。涉及：傳輸者、媒體、接收者。"
+  - title: "演示 (Presentation)"
+    desc: "輸出數據。常見媒體：文字、圖像、視像、音效。"
+
+# --- 分類小遊戲 ---
 hardware_software_items:
   - text: "中央處理器 (CPU)"
     type: "hardware"
-    hint: "它是電腦的大腦，屬於實體設備。"
+    hint: "它是電腦的大腦。"
   - text: "Microsoft Windows"
     type: "software"
-    hint: "這是一個操作系統，屬於系統軟件。"
+    hint: "這是一個操作系統。"
   - text: "主機板"
     type: "hardware"
-    hint: "連接所有電子部件的底板。"
+    hint: "連接所有部件的底板。"
   - text: "驅動程式"
     type: "software"
-    hint: "讓操作系統控制硬件的程式。"
-  - text: "顯示器"
-    type: "hardware"
-    hint: "用於輸出的實體屏幕。"
-  - text: "實用程式"
-    type: "software"
-    hint: "用於維護系統的工具軟件。"
+    hint: "讓系統控制硬件的程式。"
 
-# 2. 測驗題目 (根據 PDF 內容)
+# --- 測驗題目 (跟之前一樣) ---
 quiz_questions:
-  - question: "根據課本，資訊系統的主要功能不包括以下哪項？"
-    options: 
-      - "實現流程自動化"
-      - "完全取代人類決策"
-      - "減少人為錯誤"
-      - "提升效率"
+  - question: "資訊系統的主要功能不包括以下哪項？"
+    options: ["流程自動化", "完全取代人類決策", "減少人為錯誤", "提升效率"]
     correct: 1
-    explanation: "資訊系統的功能包括：實現流程自動化、減少人為錯誤和提升效率，但並不能完全取代人類的所有決策。"
-  
-  - question: "在資訊處理的7個階段中，將「香港過去50年的年均氣溫放入試算表，並歸納出氣候趨勢」屬於哪個階段？"
-    options: 
-      - "處理 (Processing)"
-      - "分析 (Analysis)"
-      - "組織 (Organization)"
-      - "演示 (Presentation)"
+    explanation: "系統不能完全取代人類的所有決策。"
+  - question: "將氣溫數據歸納出氣候趨勢屬於哪個階段？"
+    options: ["處理", "分析", "組織", "演示"]
     correct: 1
-    explanation: "根據 PDF 第 27 頁，從已經處理的數據中提取有意義的資訊（如歸納趨勢）屬於「分析」階段。"
-
-  - question: "數據傳輸 (Transmission) 涉及哪三個必要元素？"
-    options: 
-      - "輸入、處理、輸出"
-      - "鍵盤、滑鼠、屏幕"
-      - "傳輸者、媒體、接收者"
-      - "數據、資訊、知識"
+    explanation: "從數據提取有意義資訊屬於分析。"
+  - question: "數據傳輸涉及哪三個要素？"
+    options: ["輸入/處理/輸出", "鍵盤/滑鼠/屏幕", "傳輸者/媒體/接收者", "數據/資訊/知識"]
     correct: 2
-    explanation: "根據 PDF 第 28 頁，數據傳輸涉及傳輸者(Sender)、媒體(Medium)和接收者(Receiver)。"
-
-  - question: "以下哪項屬於「系統軟件」而非應用軟件？"
-    options: 
-      - "文書處理器"
-      - "試算表軟件"
-      - "遊戲程式"
-      - "驅動程式"
-    correct: 3
-    explanation: "根據 PDF 第 7 頁，系統軟件包括操作系統、實用程式和驅動程式。"
-
-  - question: "小敏有 200 段影片素材。為了有效率地搜尋，她將同一週拍攝的素材放入同一個資料夾中。這屬於資訊處理的哪個階段？"
-    options: 
-      - "收集"
-      - "組織"
-      - "分析"
-      - "演示"
-    correct: 1
-    explanation: "將數據分類、排序或存入特定文件夾以方便日後使用，屬於「組織」(Organization) 階段。"
-
-  - question: "在 IPO (Input-Process-Output) 模式中，CPU 執行指令屬於哪一部分？"
-    options: 
-      - "Input (輸入)"
-      - "Process (處理)"
-      - "Output (輸出)"
-      - "Storage (儲存)"
-    correct: 1
-    explanation: "CPU 運算和執行指令是核心的「處理」過程。"
-
-  - question: "PDF 中提到「演示」(Presentation) 可以通過哪些媒體輸出？"
-    options: 
-      - "只有文字和圖像"
-      - "只有視像和音效"
-      - "文字、圖像、視像、音效"
-      - "只有打印出來的文件"
-    correct: 2
-    explanation: "根據 PDF 第 29 頁，演示常見例子包括文字、圖像、視像和音效。"
+    explanation: "傳輸者(Sender)、媒體(Medium)、接收者(Receiver)。"

@@ -1,5 +1,4 @@
 ---
-# 這一行非常重要，告訴 GitHub Pages 使用 Liquid 模板引擎處理此頁面
 layout: null
 ---
 <!DOCTYPE html>
@@ -12,9 +11,11 @@ layout: null
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
         .font-chinese { font-family: 'Noto Sans TC', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
+        /* 漂浮動畫 */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -22,23 +23,35 @@ layout: null
         }
         .animate-float { animation: float 6s ease-in-out infinite; }
         
+        /* 玻璃擬態特效 */
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+
+        /* 卡片進場動畫 */
         .card-enter {
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 0.6s forwards;
         }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: { extend: { colors: { primary: '#4F46E5', secondary: '#0EA5E9', } } }
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5', 
+                        secondary: '#0EA5E9', 
+                    }
+                }
+            }
         }
     </script>
 </head>
@@ -49,6 +62,7 @@ layout: null
             <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full mix-blend-overlay filter blur-xl animate-float"></div>
             <div class="absolute bottom-10 right-10 w-64 h-64 bg-pink-400 rounded-full mix-blend-overlay filter blur-2xl animate-float" style="animation-delay: 2s"></div>
         </div>
+
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-center md:text-left">
@@ -57,6 +71,7 @@ layout: null
                     </div>
                     <h1 class="text-4xl md:text-6xl font-bold mb-2 tracking-tight">ICT 資訊及通訊科技</h1>
                     <h2 class="text-xl md:text-2xl text-indigo-100 font-light mb-6">Last Minute Revision Platform</h2>
+                    
                     <div class="flex flex-wrap gap-4 justify-center md:justify-start">
                         <div class="glass-effect px-4 py-2 rounded-lg flex items-center gap-3">
                             <div class="p-2 bg-green-500/20 rounded-full"><i class="ri-book-open-line text-green-300"></i></div>
@@ -67,6 +82,7 @@ layout: null
                         </div>
                     </div>
                 </div>
+                
                 <div class="hidden md:block opacity-90">
                     <i class="ri-macbook-line text-[150px] text-white/80 drop-shadow-lg"></i>
                 </div>
@@ -75,6 +91,7 @@ layout: null
     </header>
 
     <main class="container mx-auto px-4 -mt-16 relative z-20 mb-auto">
+        
         <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 mb-10 border-b-4 border-indigo-500">
             <div class="flex items-start gap-4">
                 <div class="p-3 bg-indigo-100 dark:bg-indigo-900/50 rounded-full text-indigo-600 dark:text-indigo-400">
@@ -82,37 +99,42 @@ layout: null
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-1">歡迎回來溫習！</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm">選擇下方的課題卡片開始。系統包含重點筆記、互動練習以及模擬試題。</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">
+                        選擇下方的課題卡片開始。系統包含重點筆記、互動練習以及模擬試題。
+                    </p>
                 </div>
             </div>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pb-12">
+            
             {% for lesson in site.data.lessons %}
             
-            {% assign bg_color = "bg-" | append: lesson.color | append: "-600" %}
-            {% assign light_bg = "bg-" | append: lesson.color | append: "-100" %}
-            {% assign text_color = "text-" | append: lesson.color | append: "-600" %}
+            {% assign color = lesson.color | default: "slate" %}
+            {% assign bg_class = "bg-" | append: color | append: "-600" %}
+            {% assign light_bg_class = "bg-" | append: color | append: "-100" %}
+            {% assign text_class = "text-" | append: color | append: "-600" %}
+            {% assign icon_class = "text-" | append: color | append: "-400" %}
             
-            <article class="card-enter bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group overflow-hidden flex flex-col {% unless lesson.active %}opacity-70 border-dashed{% endunless %}" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
+            <article class="card-enter bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group overflow-hidden flex flex-col {% unless lesson.active %}opacity-70 border-dashed grayscale-[0.5]{% endunless %}" style="animation-delay: {{ forloop.index | times: 0.1 }}s">
                 
-                <div class="h-2 w-full {{ bg_color }}"></div>
+                <div class="h-2 w-full {{ bg_class }}"></div>
                 
                 <div class="p-6 flex-1 flex flex-col">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="p-3 rounded-lg {{ light_bg }} dark:bg-opacity-20 {{ text_color }} dark:text-{{ lesson.color }}-400 group-hover:scale-110 transition-transform">
+                        <div class="p-3 rounded-lg {{ light_bg_class }} dark:bg-opacity-20 {{ text_class }} dark:{{ icon_class }} group-hover:scale-110 transition-transform">
                             <i class="{{ lesson.icon }} text-3xl"></i>
                         </div>
                         <span class="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-xs font-mono rounded text-slate-500">{{ lesson.id }}</span>
                     </div>
                     
                     <h4 class="text-xl font-bold text-slate-800 dark:text-white mb-1">{{ lesson.title }}</h4>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">{{ lesson.desc }}</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 min-h-[40px]">{{ lesson.desc }}</p>
                     
-                    <div class="space-y-2 mb-6 flex-1 {% unless lesson.active %}opacity-60{% endunless %}">
+                    <div class="space-y-2 mb-6 flex-1">
                         {% for point in lesson.points %}
                         <div class="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                            <i class="ri-check-line {{ text_color }} dark:text-{{ lesson.color }}-400 mr-2"></i> {{ point }}
+                            <i class="ri-check-line {{ text_class }} dark:{{ icon_class }} mr-2"></i> {{ point }}
                         </div>
                         {% endfor %}
                     </div>
@@ -126,7 +148,7 @@ layout: null
                     </div>
 
                     {% if lesson.active %}
-                    <a href="{{ lesson.link }}" class="w-full py-2.5 rounded-lg {{ bg_color }} hover:opacity-90 text-white font-medium text-center transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
+                    <a href="{{ lesson.link }}" class="w-full py-2.5 rounded-lg {{ bg_class }} hover:opacity-90 text-white font-medium text-center transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
                         開始溫習 <i class="ri-arrow-right-line transition-all"></i>
                     </a>
                     {% else %}
@@ -137,22 +159,47 @@ layout: null
                 </div>
             </article>
             {% endfor %}
+
         </div>
     </main>
 
     <footer class="bg-slate-900 text-slate-300 py-10 mt-auto border-t border-slate-800">
         <div class="container mx-auto px-4">
-            <div class="text-center">
-                <p>&copy; 2024 新界喇沙中學 資訊及通訊科技科.</p>
+            <div class="grid md:grid-cols-3 gap-8 items-center text-center md:text-left">
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-2">新界喇沙中學</h4>
+                    <p class="text-sm text-slate-400">資訊及通訊科技科 (ICT)</p>
+                    <p class="text-xs text-slate-500 mt-1">互動溫習系統 v2.0</p>
+                </div>
+                
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="hover:text-white transition-colors flex flex-col items-center group">
+                        <div class="p-2 bg-slate-800 rounded-full mb-1 group-hover:bg-indigo-600 transition-colors">
+                            <i class="ri-mail-send-line"></i>
+                        </div>
+                        <span class="text-xs">聯絡老師</span>
+                    </a>
+                </div>
+
+                <div class="text-sm md:text-right text-slate-500">
+                    <p>&copy; 2024 De La Salle Secondary School, N.T.</p>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Dark Mode 檢測與切換
         const html = document.documentElement;
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { html.classList.add('dark'); }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) { html.classList.add('dark'); } else { html.classList.remove('dark'); }
+            if (event.matches) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
         });
     </script>
 </body>

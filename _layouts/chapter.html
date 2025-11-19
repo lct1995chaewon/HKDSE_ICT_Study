@@ -1,262 +1,262 @@
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | 互動溫習平台</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
-        .font-chinese { font-family: 'Noto Sans TC', sans-serif; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .glass-header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .dark .glass-header {
-            background: rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        /* Timeline CSS */
-        .timeline-line { position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; z-index: 0; }
-        .dark .timeline-line { background: #334155; }
-    </style>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 900: '#1e3a8a' }
-                    }
-                }
-            }
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | 互動溫習平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        .font-chinese { font-family: 'Noto Sans TC', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .dark .glass-header {
+            background: rgba(15, 23, 42, 0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        /* Timeline CSS */
+        .timeline-line { position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; z-index: 0; }
+        .dark .timeline-line { background: #334155; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 900: '#1e3a8a' }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body class="font-chinese bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
 
-    {% assign data = site.data[page.data_source] %}
+    {% assign data = site.data[page.data_source] %}
 
-    <nav class="glass-header fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-2 text-brand-600 dark:text-brand-400 font-bold text-lg">
-                <a href="{{ site.baseurl }}/" class="hover:text-brand-800 transition-colors"><i class="ri-arrow-left-line"></i> 回主頁</a>
-                <span class="text-slate-300">|</span>
-                <span>{{ page.chapter_id }}</span>
-            </div>
-            <div class="hidden md:flex space-x-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-full">
-                <button onclick="scrollToSection('intro')" class="px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white dark:hover:bg-slate-700 transition-all">概論</button>
-                
-                {% if data.timeline_stages %}
-                <button onclick="scrollToSection('stages')" class="px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white dark:hover:bg-slate-700 transition-all">重點流程</button>
-                {% endif %}
-                
-                <button onclick="scrollToSection('quiz')" class="px-4 py-1.5 rounded-full text-sm font-medium bg-brand-500 text-white shadow-sm">測驗</button>
-            </div>
-        </div>
-    </nav>
+    <nav class="glass-header fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-brand-600 dark:text-brand-400 font-bold text-lg">
+                <a href="{{ site.baseurl }}/" class="hover:text-brand-800 transition-colors"><i class="ri-arrow-left-line"></i> 回主頁</a>
+                <span class="text-slate-300">|</span>
+                <span>{{ page.chapter_id }}</span>
+            </div>
+            <div class="hidden md:flex space-x-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-full">
+                <button onclick="scrollToSection('intro')" class="px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white dark:hover:bg-slate-700 transition-all">概論</button>
+                
+                {% if data.timeline_stages %}
+                <button onclick="scrollToSection('stages')" class="px-4 py-1.5 rounded-full text-sm font-medium hover:bg-white dark:hover:bg-slate-700 transition-all">重點流程</button>
+                {% endif %}
+                
+                <button onclick="scrollToSection('quiz')" class="px-4 py-1.5 rounded-full text-sm font-medium bg-brand-500 text-white shadow-sm">測驗</button>
+            </div>
+        </div>
+    </nav>
 
-    <header id="intro" class="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50 to-slate-50 dark:from-slate-900 dark:to-slate-950">
-        <div class="container mx-auto max-w-4xl text-center fade-in">
-            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-wider mb-4">{{ page.chapter_id }}</span>
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white leading-tight">
-                {{ page.title }}
-            </h1>
-            <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-                {{ page.description }}
-            </p>
-            
-            {% if data.key_points %}
-            <div class="grid md:grid-cols-3 gap-4 text-left">
-                {% for point in data.key_points %}
-                <div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
-                    <div class="w-10 h-10 bg-{{ point.color }}-100 dark:bg-{{ point.color }}-900/30 rounded-lg flex items-center justify-center text-{{ point.color }}-600 mb-3">
-                        <i class="{{ point.icon }} text-xl"></i>
-                    </div>
-                    <h3 class="font-bold mb-1">{{ point.title }}</h3>
-                    <p class="text-xs text-slate-500">{{ point.desc }}</p>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </div>
-    </header>
+    <header id="intro" class="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50 to-slate-50 dark:from-slate-900 dark:to-slate-950">
+        <div class="container mx-auto max-w-4xl text-center fade-in">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-wider mb-4">{{ page.chapter_id }}</span>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white leading-tight">
+                {{ page.title }}
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+                {{ page.description }}
+            </p>
+            
+            {% if data.key_points %}
+            <div class="grid md:grid-cols-3 gap-4 text-left">
+                {% for point in data.key_points %}
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+                    <div class="w-10 h-10 bg-{{ point.color }}-100 dark:bg-{{ point.color }}-900/30 rounded-lg flex items-center justify-center text-{{ point.color }}-600 mb-3">
+                        <i class="{{ point.icon }} text-xl"></i>
+                    </div>
+                    <h3 class="font-bold mb-1">{{ point.title }}</h3>
+                    <p class="text-xs text-slate-500">{{ point.desc }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </header>
 
-    <main class="container mx-auto max-w-5xl px-4 space-y-24 pb-24">
+    <main class="container mx-auto max-w-5xl px-4 space-y-24 pb-24">
 
-        <section class="prose dark:prose-invert max-w-none">
-            {{ content }}
-        </section>
+        <section class="prose dark:prose-invert max-w-none">
+            {{ content }}
+        </section>
 
-        {% if data.hardware_software_items %}
-        <section id="game" class="scroll-mt-24">
-            <div class="bg-slate-100 dark:bg-slate-900 rounded-2xl p-6 relative overflow-hidden">
-                <div class="absolute top-0 right-0 opacity-5 text-9xl"><i class="ri-gamepad-line"></i></div>
-                <h3 class="text-xl font-bold mb-4">互動練習：分類測試</h3>
-                <div id="hs-game-container" class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm text-center min-h-[200px] flex flex-col justify-center items-center"></div>
-            </div>
-        </section>
-        {% endif %}
+        {% if data.hardware_software_items %}
+        <section id="game" class="scroll-mt-24">
+            <div class="bg-slate-100 dark:bg-slate-900 rounded-2xl p-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 opacity-5 text-9xl"><i class="ri-gamepad-line"></i></div>
+                <h3 class="text-xl font-bold mb-4">互動練習：分類測試</h3>
+                <div id="hs-game-container" class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm text-center min-h-[200px] flex flex-col justify-center items-center"></div>
+            </div>
+        </section>
+        {% endif %}
 
-        {% if data.timeline_stages %}
-        <section id="stages" class="scroll-mt-24">
-            <div class="flex items-center gap-4 mb-8">
-                <h2 class="text-2xl font-bold">重點流程與階段</h2>
-            </div>
+        {% if data.timeline_stages %}
+        <section id="stages" class="scroll-mt-24">
+            <div class="flex items-center gap-4 mb-8">
+                <h2 class="text-2xl font-bold">重點流程與階段</h2>
+            </div>
 
-            <div class="relative pl-8 space-y-8">
-                <div class="timeline-line"></div>
-                {% for stage in data.timeline_stages %}
-                <div class="relative z-10 group">
-                    <div class="absolute -left-[42px] w-12 h-12 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-100 dark:border-slate-800 flex items-center justify-center font-bold text-slate-400 group-hover:border-brand-500 group-hover:text-brand-500 transition-colors">{{ forloop.index }}</div>
-                    <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all">
-                        <h3 class="text-lg font-bold mb-2 text-brand-600">{{ stage.title }}</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm">{{ stage.desc }}</p>
-                        {% if stage.extra %}
-                        <div class="mt-3 p-2 bg-slate-50 dark:bg-slate-800 rounded text-xs text-slate-500">
-                            {{ stage.extra }}
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-        {% endif %}
+            <div class="relative pl-8 space-y-8">
+                <div class="timeline-line"></div>
+                {% for stage in data.timeline_stages %}
+                <div class="relative z-10 group">
+                    <div class="absolute -left-[42px] w-12 h-12 rounded-full bg-white dark:bg-slate-900 border-4 border-slate-100 dark:border-slate-800 flex items-center justify-center font-bold text-slate-400 group-hover:border-brand-500 group-hover:text-brand-500 transition-colors">{{ forloop.index }}</div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all">
+                        <h3 class="text-lg font-bold mb-2 text-brand-600">{{ stage.title }}</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm">{{ stage.desc }}</p>
+                        {% if stage.extra %}
+                        <div class="mt-3 p-2 bg-slate-50 dark:bg-slate-800 rounded text-xs text-slate-500">
+                            {{ stage.extra }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
 
-        {% if data.quiz_questions %}
-        <section id="quiz" class="scroll-mt-24">
-            <div class="bg-gradient-to-br from-brand-600 to-brand-900 rounded-2xl shadow-xl p-8 text-white">
-                <div class="flex items-center justify-between mb-8">
-                    <div>
-                        <h2 class="text-2xl font-bold mb-1">課後測驗</h2>
-                        <p class="text-brand-200 text-sm">挑戰自我，鞏固知識</p>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-3xl font-bold font-mono" id="scoreDisplay">0</div>
-                        <div class="text-xs text-brand-300">目前得分</div>
-                    </div>
-                </div>
-                <div id="quiz-container" class="bg-white dark:bg-slate-900 rounded-xl p-6 text-slate-900 dark:text-white min-h-[300px]"></div>
-            </div>
-        </section>
-        {% endif %}
+        {% if data.quiz_questions %}
+        <section id="quiz" class="scroll-mt-24">
+            <div class="bg-gradient-to-br from-brand-600 to-brand-900 rounded-2xl shadow-xl p-8 text-white">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-1">課後測驗</h2>
+                        <p class="text-brand-200 text-sm">挑戰自我，鞏固知識</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold font-mono" id="scoreDisplay">0</div>
+                        <div class="text-xs text-brand-300">目前得分</div>
+                    </div>
+                </div>
+                <div id="quiz-container" class="bg-white dark:bg-slate-900 rounded-xl p-6 text-slate-900 dark:text-white min-h-[300px]"></div>
+            </div>
+        </section>
+        {% endif %}
 
-    </main>
+    </main>
 
-    <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-6 right-6 bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 p-3 rounded-full z-40 hover:-translate-y-1 transition-transform">
-        <i class="ri-arrow-up-line"></i>
-    </button>
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-6 right-6 bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 p-3 rounded-full z-40 hover:-translate-y-1 transition-transform">
+        <i class="ri-arrow-up-line"></i>
+    </button>
 
-    <script>
-        // Liquid Variable Injection
-        const hsItems = {{ data.hardware_software_items | jsonify }} || [];
-        const quizData = {{ data.quiz_questions | jsonify }} || [];
+    <script>
+        // Liquid Variable Injection
+        const hsItems = {{ data.hardware_software_items | jsonify }} || [];
+        const quizData = {{ data.quiz_questions | jsonify }} || [];
 
-        // Scroll Logic
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const navHeight = document.getElementById('navbar').offsetHeight;
-                const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-                window.scrollTo({top: top, behavior: 'smooth'});
-            }
-        }
+        // Scroll Logic
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                const navHeight = document.getElementById('navbar').offsetHeight;
+                const top = el.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                window.scrollTo({top: top, behavior: 'smooth'});
+            }
+        }
 
-        // --- HS Game Logic (Only runs if data exists) ---
-        let hsIndex = 0;
-        if(hsItems.length > 0) {
-            loadHSGame();
-        }
+        // --- HS Game Logic (Only runs if data exists) ---
+        let hsIndex = 0;
+        if(hsItems.length > 0) {
+            loadHSGame();
+        }
 
-        function loadHSGame() {
-            if(hsIndex >= hsItems.length) {
-                document.getElementById('hs-game-container').innerHTML = `<div class="text-center animate-pulse"><i class="ri-checkbox-circle-line text-5xl text-green-500 mb-2"></i><h4 class="font-bold text-lg">練習完成！</h4><button onclick="hsIndex=0;loadHSGame()" class="mt-4 text-sm text-brand-500 hover:underline">重置</button></div>`;
-                return;
-            }
-            const item = hsItems[hsIndex];
-            document.getElementById('hs-game-container').innerHTML = `
-                <div class="fade-in w-full max-w-md mx-auto">
-                    <h4 class="text-2xl font-bold mb-2">${item.text}</h4>
-                    <p class="text-sm text-slate-400 mb-6">提示: ${item.hint}</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button onclick="checkHS('hardware')" class="py-3 rounded-lg border-2 border-blue-100 hover:bg-blue-50 hover:border-blue-500 transition-all font-bold text-blue-600">硬件</button>
-                        <button onclick="checkHS('software')" class="py-3 rounded-lg border-2 border-purple-100 hover:bg-purple-50 hover:border-purple-500 transition-all font-bold text-purple-600">軟件</button>
-                    </div>
-                </div>`;
-        }
+        function loadHSGame() {
+            if(hsIndex >= hsItems.length) {
+                document.getElementById('hs-game-container').innerHTML = `<div class="text-center animate-pulse"><i class="ri-checkbox-circle-line text-5xl text-green-500 mb-2"></i><h4 class="font-bold text-lg">練習完成！</h4><button onclick="hsIndex=0;loadHSGame()" class="mt-4 text-sm text-brand-500 hover:underline">重置</button></div>`;
+                return;
+            }
+            const item = hsItems[hsIndex];
+            document.getElementById('hs-game-container').innerHTML = `
+                <div class="fade-in w-full max-w-md mx-auto">
+                    <h4 class="text-2xl font-bold mb-2">${item.text}</h4>
+                    <p class="text-sm text-slate-400 mb-6">提示: ${item.hint}</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="checkHS('hardware')" class="py-3 rounded-lg border-2 border-blue-100 hover:bg-blue-50 hover:border-blue-500 transition-all font-bold text-blue-600">硬件</button>
+                        <button onclick="checkHS('software')" class="py-3 rounded-lg border-2 border-purple-100 hover:bg-purple-50 hover:border-purple-500 transition-all font-bold text-purple-600">軟件</button>
+                    </div>
+                </div>`;
+        }
 
-        function checkHS(answer) {
-            const item = hsItems[hsIndex];
-            const isCorrect = answer === item.type;
-            const color = isCorrect ? 'text-green-600' : 'text-red-600';
-            const icon = isCorrect ? 'ri-check-line' : 'ri-close-line';
-            document.getElementById('hs-game-container').innerHTML = `
-                <div class="fade-in text-center">
-                    <div class="text-5xl ${color} mb-3"><i class="${icon}"></i></div>
-                    <p class="font-bold text-lg mb-4">${isCorrect ? '答對了！' : '答錯了，正確是 ' + item.type}</p>
-                    <button onclick="hsIndex++;loadHSGame()" class="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors">下一題</button>
-                </div>`;
-        }
+        function checkHS(answer) {
+            const item = hsItems[hsIndex];
+            const isCorrect = answer === item.type;
+            const color = isCorrect ? 'text-green-600' : 'text-red-600';
+            const icon = isCorrect ? 'ri-check-line' : 'ri-close-line';
+            document.getElementById('hs-game-container').innerHTML = `
+                <div class="fade-in text-center">
+                    <div class="text-5xl ${color} mb-3"><i class="${icon}"></i></div>
+                    <p class="font-bold text-lg mb-4">${isCorrect ? '答對了！' : '答錯了，正確是 ' + item.type}</p>
+                    <button onclick="hsIndex++;loadHSGame()" class="px-6 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors">下一題</button>
+                </div>`;
+        }
 
-        // --- Quiz Logic (Only runs if data exists) ---
-        let qIndex = 0; let score = 0; let answered = false;
-        if(quizData.length > 0) {
-            loadQuiz();
-        }
+        // --- Quiz Logic (Only runs if data exists) ---
+        let qIndex = 0; let score = 0; let answered = false;
+        if(quizData.length > 0) {
+            loadQuiz();
+        }
 
-        function loadQuiz() {
-            if(qIndex >= quizData.length) {
-                const pct = Math.round((score / quizData.length) * 100);
-                document.getElementById('quiz-container').innerHTML = `
-                    <div class="text-center py-10 fade-in">
-                        <h3 class="text-2xl font-bold mb-2">測驗結束</h3>
-                        <p class="text-slate-500 mb-6">得分：${score} / ${quizData.length}</p>
-                        <div class="w-full max-w-xs mx-auto h-3 bg-slate-100 rounded-full overflow-hidden mb-2">
-                            <div class="h-full bg-brand-500" style="width: ${pct}%"></div>
-                        </div>
-                        <button onclick="qIndex=0;score=0;loadQuiz()" class="mt-4 px-6 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors">重新開始</button>
-                    </div>`;
-                return;
-            }
-            const q = quizData[qIndex];
-            document.getElementById('quiz-container').innerHTML = `
-                <div class="fade-in">
-                    <div class="flex justify-between text-sm text-slate-400 mb-4"><span>Question ${qIndex + 1} / ${quizData.length}</span></div>
-                    <h4 class="text-lg font-bold mb-6">${q.question}</h4>
-                    <div class="space-y-3">
-                        ${q.options.map((opt, i) => `<button onclick="checkQuiz(${i})" class="w-full text-left p-4 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-slate-800 transition-all flex items-center gap-3 group"><span class="w-6 h-6 rounded-full border flex items-center justify-center text-xs group-hover:bg-brand-500 group-hover:text-white transition-colors">${String.fromCharCode(65+i)}</span>${opt}</button>`).join('')}
-                    </div>
-                    <div id="explanation" class="hidden mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 text-slate-700 dark:text-blue-200 rounded-lg text-sm border-l-4 border-blue-500"></div>
-                    <button id="nextBtn" onclick="nextQ()" class="hidden mt-6 w-full py-3 bg-brand-600 text-white rounded-lg font-bold hover:bg-brand-700 transition-colors">下一題</button>
-                </div>`;
-        }
+        function loadQuiz() {
+            if(qIndex >= quizData.length) {
+                const pct = Math.round((score / quizData.length) * 100);
+                document.getElementById('quiz-container').innerHTML = `
+                    <div class="text-center py-10 fade-in">
+                        <h3 class="text-2xl font-bold mb-2">測驗結束</h3>
+                        <p class="text-slate-500 mb-6">得分：${score} / ${quizData.length}</p>
+                        <div class="w-full max-w-xs mx-auto h-3 bg-slate-100 rounded-full overflow-hidden mb-2">
+                            <div class="h-full bg-brand-500" style="width: ${pct}%"></div>
+                        </div>
+                        <button onclick="qIndex=0;score=0;loadQuiz()" class="mt-4 px-6 py-2 border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors">重新開始</button>
+                    </div>`;
+                return;
+            }
+            const q = quizData[qIndex];
+            document.getElementById('quiz-container').innerHTML = `
+                <div class="fade-in">
+                    <div class="flex justify-between text-sm text-slate-400 mb-4"><span>Question ${qIndex + 1} / ${quizData.length}</span></div>
+                    <h4 class="text-lg font-bold mb-6">${q.question}</h4>
+                    <div class="space-y-3">
+                        ${q.options.map((opt, i) => `<button onclick="checkQuiz(${i})" class="w-full text-left p-4 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-slate-800 transition-all flex items-center gap-3 group"><span class="w-6 h-6 rounded-full border flex items-center justify-center text-xs group-hover:bg-brand-500 group-hover:text-white transition-colors">${String.fromCharCode(65+i)}</span>${opt}</button>`).join('')}
+                    </div>
+                    <div id="explanation" class="hidden mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 text-slate-700 dark:text-blue-200 rounded-lg text-sm border-l-4 border-blue-500"></div>
+                    <button id="nextBtn" onclick="nextQ()" class="hidden mt-6 w-full py-3 bg-brand-600 text-white rounded-lg font-bold hover:bg-brand-700 transition-colors">下一題</button>
+                </div>`;
+        }
 
-        function checkQuiz(choiceIdx) {
-            if(answered) return;
-            answered = true;
-            const q = quizData[qIndex];
-            const isCorrect = choiceIdx === q.correct;
-            if(isCorrect) { score++; document.getElementById('scoreDisplay').textContent = score; }
-            const exp = document.getElementById('explanation');
-            exp.innerHTML = `<strong class="block mb-1">解析：</strong>${q.explanation}`;
-            exp.classList.remove('hidden');
-            document.getElementById('nextBtn').classList.remove('hidden');
-            
-            const btns = document.querySelectorAll('#quiz-container button:not(#nextBtn)');
-            btns.forEach((btn, i) => {
-                 if(i === q.correct) btn.classList.add('bg-green-100', 'border-green-500');
-                 else if(i === choiceIdx && !isCorrect) btn.classList.add('bg-red-100', 'border-red-500');
-                 else btn.classList.add('opacity-50');
-            });
-        }
+        function checkQuiz(choiceIdx) {
+            if(answered) return;
+            answered = true;
+            const q = quizData[qIndex];
+            const isCorrect = choiceIdx === q.correct;
+            if(isCorrect) { score++; document.getElementById('scoreDisplay').textContent = score; }
+            const exp = document.getElementById('explanation');
+            exp.innerHTML = `<strong class="block mb-1">解析：</strong>${q.explanation}`;
+            exp.classList.remove('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+            
+            const btns = document.querySelectorAll('#quiz-container button:not(#nextBtn)');
+            btns.forEach((btn, i) => {
+                 if(i === q.correct) btn.classList.add('bg-green-100', 'border-green-500');
+                 else if(i === choiceIdx && !isCorrect) btn.classList.add('bg-red-100', 'border-red-500');
+                 else btn.classList.add('opacity-50');
+            });
+        }
 
-        function nextQ() { qIndex++; answered = false; loadQuiz(); }
-    </script>
+        function nextQ() { qIndex++; answered = false; loadQuiz(); }
+    </script>
 </body>
 </html>

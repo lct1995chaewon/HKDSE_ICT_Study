@@ -1,5 +1,4 @@
-title: 新界喇沙中學 ICT
-# 這一行非常重要！必須跟你的 GitHub 專案名稱一模一樣，前面要加斜線
-baseurl: "/HKDSE_ICT_Study" 
-url: "https://lct1995chaewon.github.io"
+title: ICT Revision
+baseurl: "/HKDSE_ICT_Study"
+url: ""
 theme: jekyll-theme-primer

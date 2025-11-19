@@ -6,22 +6,53 @@ layout: null
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICT 溫習平台</title>
+    <title>新界喇沙中學 ICT - 互動平台</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); }
+    </style>
 </head>
-<body class="bg-slate-50 p-10">
-    <h1 class="text-3xl font-bold mb-10 text-center">ICT 溫習平台</h1>
-    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {% for lesson in site.data.lessons %}
-        <div class="bg-white p-6 rounded-xl shadow-lg border border-slate-200">
-            <h2 class="text-xl font-bold mb-2">{{ lesson.title }}</h2>
-            <p class="text-slate-500 mb-4">{{ lesson.desc }}</p>
-            <a href="{{ site.baseurl }}/{{ lesson.link }}" class="block w-full bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700">
-                開始溫習
-            </a>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen text-slate-800">
+    
+    <header class="bg-gradient-to-r from-indigo-600 to-blue-500 text-white py-20 shadow-lg">
+        <div class="container mx-auto px-4 text-center">
+            <span class="inline-block py-1 px-3 bg-white/20 backdrop-blur rounded-full text-sm mb-4">新界喇沙中學 ICT</span>
+            <h1 class="text-4xl font-bold mb-4">最後一分鐘溫習平台</h1>
+            <p class="text-indigo-100 text-lg">互動筆記 · 重點測驗 · 即時回饋</p>
         </div>
-        {% endfor %}
-    </div>
+    </header>
+
+    <main class="container mx-auto px-4 -mt-10 pb-20">
+        <div class="grid md:grid-cols-3 gap-6">
+            {% for lesson in site.data.lessons %}
+            <div class="glass rounded-xl p-6 shadow-lg hover:-translate-y-2 transition-transform duration-300">
+                <div class="h-2 w-full bg-{{ lesson.color | default: 'slate' }}-500 rounded-full mb-4"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-3 bg-{{ lesson.color | default: 'slate' }}-100 rounded-lg text-{{ lesson.color | default: 'slate' }}-600">
+                        <i class="{{ lesson.icon }} text-2xl"></i>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400">{{ lesson.id }}</span>
+                </div>
+                <h2 class="text-xl font-bold mb-2">{{ lesson.title }}</h2>
+                <p class="text-sm text-slate-500 mb-6 min-h-[40px]">{{ lesson.desc }}</p>
+                
+                {% if lesson.active %}
+                <a href="{{ site.baseurl }}/{{ lesson.link }}" class="flex items-center justify-center w-full py-3 rounded-lg bg-{{ lesson.color | default: 'slate' }}-600 text-white hover:opacity-90 transition-opacity">
+                    開始溫習 <i class="ri-arrow-right-line ml-2"></i>
+                </a>
+                {% else %}
+                <button disabled class="w-full py-3 rounded-lg bg-slate-200 text-slate-400 cursor-not-allowed">即將推出</button>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="text-center py-8 text-slate-400 text-sm">
+        &copy; 2024 De La Salle Secondary School, N.T.
+    </footer>
 </body>
 </html>

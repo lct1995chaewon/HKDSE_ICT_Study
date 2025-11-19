@@ -1,2 +1,5 @@
-title: ICT Revision
+title: 新界喇沙中學 ICT
+# 這一行非常重要！必須跟你的 GitHub 專案名稱一模一樣，前面要加斜線
+baseurl: "/你的專案名稱" 
+url: "https://你的帳號.github.io"
 theme: jekyll-theme-primer

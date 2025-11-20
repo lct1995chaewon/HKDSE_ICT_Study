@@ -158,6 +158,23 @@
 
             // 規則判斷引擎
             switch(rule) {
+                case 'parity_sim':
+                    // 移除所有非 0/1 字符
+                    if (/[^01]/.test(val)) {
+                        errorMsg = "❌ 請只輸入二進制數字 (0 或 1)！";
+                    } else {
+                        // 計算 1 的數量
+                        const count1 = (val.match(/1/g) || []).length;
+                        const isEven = count1 % 2 === 0;
+                        // 偶數檢測規則：如果 1 是偶數個，加 0；如果是奇數個，加 1
+                        const parityBit = isEven ? '0' : '1';
+                        
+                        isValid = true;
+                        // 顯示計算結果
+                        successMsg = `ℹ️ 1 的數量: ${count1} (需補 ${parityBit}) <br> ➡️ 發送數據: ${val}<span class="text-red-500 font-bold">${parityBit}</span>`;
+                    }
+                    break;
+                    
                 case 'range':
                     if (!isNaN(val) && val >= min && val <= max) {
                         isValid = true;

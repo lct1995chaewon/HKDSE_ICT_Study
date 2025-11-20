@@ -1,10 +1,17 @@
 - id: "CH01"
   title: "資訊系統簡介"
-  desc: "數據處理週期"
+  desc: "數據處理週期、資訊時代與社會影響"
+  icon: "ri-database-2-line"
+  color: "emerald"
+  questions: 15
+  time: "25 分鐘"
   link: "chapter1.html"
   active: true
+  points:
+    - "數據 vs 資訊"
+    - "IPO 模型"
 
-  - id: "CH02"
+- id: "CH02"
   title: "數據控制及組織"
   desc: "數據分級層次、GIGO 原則與有效性檢驗實驗室"
   icon: "ri-shield-keyhole-line"

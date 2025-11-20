@@ -1,7 +1,7 @@
 # 新界喇沙中學 資訊及通訊科技科 互動學習平台
 
 > 現代化、互動式的ICT課程學習系統
-> https://lct1995chaewon.github.io/HKDSE_ICT_Study/
+> [https://lct1995chaewon.github.io/HKDSE_ICT_Study/](https://lct1995chaewon.github.io/HKDSE_ICT_Study/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)

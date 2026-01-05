@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <title>新界喇沙中學 ICT 主頁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      margin: 8px 0 4px;
+      font-size: 1.8rem;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #9ca3af;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      border: 1px solid #1f2937;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.8);
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #1d4ed8;
+      color: #e5e7eb;
+    }
+
+    .unit-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #111827;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .unit-header span {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .unit-header small {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .unit-header:hover {
+      background: #1f2937;
+    }
+
+    .chevron {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      transition: transform 0.2s ease;
+    }
+
+    .chevron.open {
+      transform: rotate(90deg);
+    }
+
+    .unit-body {
+      margin: 6px 0 4px;
+      padding-left: 16px;
+      display: none;
+    }
+
+    .unit-body.open {
+      display: block;
+    }
+
+    .unit-body ol {
+      margin: 4px 0 0;
+      padding-left: 18px;
+      font-size: 0.9rem;
+    }
+
+    .unit-body li {
+      margin: 2px 0;
+    }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>新界喇沙中學 ICT</h1>
+      <p>A、B、C、D、E 書課程主頁（暫作預留位置）</p>
+    </header>
+
+    <!-- A 書 -->
+    <section class="card">
+      <h3>
+        A 書
+        <span class="badge">A 冊</span>
+      </h3>
+
+      <!-- A1 單元：3 課 -->
+      <div class="unit">
+        <div class="unit-header" data-target="unit-a1">
+          <span>A1 單元（3 課）</span>
+          <div>
+            <small>展開 / 收合</small>
+            <span class="chevron">&#9654;</span>
+          </div>
+        </div>
+        <div id="unit-a1" class="unit-body">
+          <ol>
+            <li>A1 第 1 課</li>
+            <li>A1 第 2 課</li>
+            <li>A1 第 3 課</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- A2 單元：2 課 -->
+      <div class="unit">
+        <div class="unit-header" data-target="unit-a2">
+          <span>A2 單元（2 課）</span>
+          <div>
+            <small>展開 / 收合</small>
+            <span class="chevron">&#9654;</span>
+          </div>
+        </div>
+        <div id="unit-a2" class="unit-body">
+          <ol>
+            <li>A2 第 1 課</li>
+            <li>A2 第 2 課</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- B 書（預留） -->
+    <section class="card">
+      <h3>
+        B 書
+        <span class="badge">B 冊</span>
+      </h3>
+
+      <div class="unit">
+        <div class="unit-header" data-target="unit-b1">
+          <span>B1 單元（預留）</span>
+          <div>
+            <small>展開 / 收合</small>
+            <span class="chevron">&#9654;</span>
+          </div>
+        </div>
+        <div id="unit-b1" class="unit-body">
+          <ol>
+            <li>B1 第 1 課</li>
+            <li>B1 第 2 課</li>
+            <li>B1 第 3 課</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- C 書（預留） -->
+    <section class="card">
+      <h3>
+        C 書
+        <span class="badge">C 冊</span>
+      </h3>
+
+      <div class="unit">
+        <div class="unit-header" data-target="unit-c1">
+          <span>C1 單元（預留）</span>
+          <div>
+            <small>展開 / 收合</small>
+            <span class="chevron">&#9654;</span>
+          </div>
+        </div>
+        <div id="unit-c1" class="unit-body">
+          <ol>
+            <li>C1 第 1 課</li>
+            <li>C1 第 2 課</li>
+            <li>C1 第 3 課</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- D 書（預留） -->
+    <section class="card">
+      <h3>
+        D 書
+        <span class="badge">D 冊</span>
+      </h3>
+
+      <div class="unit">
+        <div class="unit-header" data-target="unit-d1">
+          <span>D1 單元（預留）</span>
+          <div>
+            <small>展開 / 收合</small>
+            <span class="chevron">&#9654;</span>
+          </div>
+        </div>
+        <div id="unit-d1" class="unit-body">
+          <ol>
+            <li>D1 第 1 課</li>
+            <li>D1 第 2 課</li>
+            <li>D1 第 3 課</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- E 書（預留） -->
+    <section class="card">
+      <h3>
+        E 書
+        <span class="badge">E 冊</span>
+      </h3>
+
+      <div class="unit">
+        <div class="unit-header" data-target="unit-e1">
+          <span>E1 單元（預留）</span>
+          <div>
+            <small>展開 / 收合</small>
+            <span class="chevron">&#9654;</span>
+          </div>
+        </div>
+        <div id="unit-e1" class="unit-body">
+          <ol>
+            <li>E1 第 1 課</li>
+            <li>E1 第 2 課</li>
+            <li>E1 第 3 課</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2024 新界喇沙中學 ICT
+    </footer>
+  </div>
+
+  <script>
+    // 點擊單元標題 → 展開 / 收合 課堂列表
+    document.querySelectorAll('.unit-header').forEach(function (header) {
+      header.addEventListener('click', function () {
+        var targetId = header.getAttribute('data-target');
+        var body = document.getElementById(targetId);
+        var chevron = header.querySelector('.chevron');
+
+        body.classList.toggle('open');
+        chevron.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

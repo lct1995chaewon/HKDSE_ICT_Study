@@ -1,10 +1,9 @@
+```yml
 - id: "CH01"
   title: "資訊系統簡介"
   desc: "數據處理週期、資訊時代與社會影響"
   icon: "ri-database-2-line"
   color: "emerald"
-  questions: 15
-  time: "25 分鐘"
   link: "chapter1.html"
   active: true
   points:
@@ -16,11 +15,23 @@
   desc: "數據分級層次、GIGO 原則與有效性檢驗實驗室"
   icon: "ri-shield-keyhole-line"
   color: "blue"
-  questions: 12
-  time: "35 分鐘"
   link: "chapter2.html"
   active: true
   points:
     - "必背：8 種數據檢驗"
     - "互動：試錯實驗室"
     - "概念：檢驗 vs 核實"
+
+- id: "CH03"
+  title: "數字系統與表示法"
+  desc: "二進制與十六進制、二補碼及溢出誤差"
+  icon: "ri-binary-line"
+  color: "purple"
+  link: "chapter3.html"
+  active: true
+  points:
+    - "容量與傳輸率單位"
+    - "十進制 ↔ 二進制 ↔ 十六進制"
+    - "無符號 vs 二補碼有符號整數"
+    - "判斷溢出誤差"
+```

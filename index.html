@@ -116,6 +116,21 @@
       margin: 2px 0;
     }
 
+    /* 連結顏色設定 */
+    a {
+      color: #38bdf8;          /* 正常狀態：亮藍色 */
+      text-decoration: none;   /* 移除底線（可按需要刪掉這行） */
+    }
+
+    a:hover {
+      color: #fbbf24;          /* 滑鼠移上：黃色 */
+      text-decoration: underline;
+    }
+
+    a:visited {
+      color: #a5b4fc;          /* 已訪問連結：淡紫色 */
+    }
+
     footer {
       margin-top: 20px;
       text-align: center;
@@ -149,9 +164,9 @@
         </div>
         <div id="unit-a1" class="unit-body">
           <ol>
-            <li>A1 第 1 課</li>
-            <li><a href="A1_chapter2.html"> 第 2 課 數據控制及數據組織 </a></li>
-            <li>A1 第 3 課</li>
+            <li><a href="A1-lesson1.html">A1 第 1 課</a></li>
+            <li><a href="A1-lesson2.html">A1 第 2 課：數據控制及數據組織</a></li>
+            <li><a href="A1-lesson3.html">A1 第 3 課</a></li>
           </ol>
         </div>
       </div>
@@ -167,8 +182,8 @@
         </div>
         <div id="unit-a2" class="unit-body">
           <ol>
-            <li>A2 第 1 課</li>
-            <li>A2 第 2 課</li>
+            <li><a href="A2-lesson1.html">A2 第 1 課</a></li>
+            <li><a href="A2-lesson2.html">A2 第 2 課</a></li>
           </ol>
         </div>
       </div>
@@ -191,9 +206,9 @@
         </div>
         <div id="unit-b1" class="unit-body">
           <ol>
-            <li>B1 第 1 課</li>
-            <li>B1 第 2 課</li>
-            <li>B1 第 3 課</li>
+            <li><a href="#">B1 第 1 課</a></li>
+            <li><a href="#">B1 第 2 課</a></li>
+            <li><a href="#">B1 第 3 課</a></li>
           </ol>
         </div>
       </div>
@@ -216,9 +231,9 @@
         </div>
         <div id="unit-c1" class="unit-body">
           <ol>
-            <li>C1 第 1 課</li>
-            <li>C1 第 2 課</li>
-            <li>C1 第 3 課</li>
+            <li><a href="#">C1 第 1 課</a></li>
+            <li><a href="#">C1 第 2 課</a></li>
+            <li><a href="#">C1 第 3 課</a></li>
           </ol>
         </div>
       </div>
@@ -241,9 +256,9 @@
         </div>
         <div id="unit-d1" class="unit-body">
           <ol>
-            <li>D1 第 1 課</li>
-            <li>D1 第 2 課</li>
-            <li>D1 第 3 課</li>
+            <li><a href="#">D1 第 1 課</a></li>
+            <li><a href="#">D1 第 2 課</a></li>
+            <li><a href="#">D1 第 3 課</a></li>
           </ol>
         </div>
       </div>
@@ -266,9 +281,9 @@
         </div>
         <div id="unit-e1" class="unit-body">
           <ol>
-            <li>E1 第 1 課</li>
-            <li>E1 第 2 課</li>
-            <li>E1 第 3 課</li>
+            <li><a href="#">E1 第 1 課</a></li>
+            <li><a href="#">E1 第 2 課</a></li>
+            <li><a href="#">E1 第 3 課</a></li>
           </ol>
         </div>
       </div>
@@ -280,7 +295,6 @@
   </div>
 
   <script>
-    // 點擊單元標題 → 展開 / 收合 課堂列表
     document.querySelectorAll('.unit-header').forEach(function (header) {
       header.addEventListener('click', function () {
         var targetId = header.getAttribute('data-target');

@@ -10,7 +10,6 @@
         }
         body {
             margin: 0;
-            padding: 0;
             font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
             background: #f4f6fb;
             color: #1f2933;
@@ -27,7 +26,7 @@
             text-align: center;
         }
         section {
-            background: #ffffff;
+            background: #fff;
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
@@ -60,7 +59,6 @@
             border: 1px solid #dbe2ef;
             padding: 10px 12px;
             text-align: left;
-            vertical-align: top;
         }
         th {
             background: #e8efff;
@@ -106,11 +104,11 @@
             cursor: pointer;
             text-align: center;
             font-weight: 600;
-            transition: all 0.2s;
+            transition: 0.2s;
         }
         .code-btn.active {
             background: #0ea5e9;
-            color: #ffffff;
+            color: #fff;
             border-color: #0ea5e9;
         }
         .parity-steps {
@@ -122,7 +120,6 @@
         }
         .parity-steps li span {
             font-weight: 600;
-            color: #0f172a;
         }
         .parity-steps li.pass {
             color: #0f8b2c;
@@ -131,6 +128,38 @@
         .parity-steps li.fail {
             color: #b42318;
             font-weight: 600;
+        }
+        .ui-demo {
+            margin-top: 12px;
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            padding: 16px;
+            background: #f8fbff;
+            display: grid;
+            gap: 16px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .control-group label {
+            font-weight: 600;
+        }
+        .status {
+            font-size: 0.92rem;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: #4338ca;
+        }
+        .status.pass {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .status.fail {
+            background: #fee2e2;
+            color: #b91c1c;
         }
         @media (max-width: 600px) {
             section {
@@ -151,11 +180,11 @@
         <div class="flex-col">
             <div>
                 <span class="badge">定義</span>
-                管理數據的全過程，核心步驟：數據有效性檢驗、數據驗證。
+                管理數據的過程：有效性檢驗、數據驗證。
             </div>
             <div>
                 <span class="badge">無用輸入，無用輸出</span>
-                不可靠或不協調的輸入 → 無法產生有用輸出。
+                不可靠輸入 → 無法產生有用輸出。
             </div>
         </div>
         <h3>常見輸入錯誤</h3>
@@ -171,18 +200,18 @@
                 <tbody>
                     <tr>
                         <td>數據來源錯誤</td>
-                        <td>來源提供了不正確的數值。</td>
-                        <td>用戶遞交不存在的電郵地址。</td>
+                        <td>來源提供了不正確的數據。</td>
+                        <td>遞交不存在的電郵。</td>
                     </tr>
                     <tr>
                         <td>轉錄錯誤</td>
-                        <td>讀／聽／輸入時誤植。</td>
+                        <td>誤讀、誤聽或誤植。</td>
                         <td>把「冶」打成「治」。</td>
                     </tr>
                     <tr>
                         <td>換位錯誤</td>
-                        <td>數值位置被調轉。</td>
-                        <td>「$15」被錯記為「$51」。</td>
+                        <td>位置被調轉。</td>
+                        <td>「$15」變成「$51」。</td>
                     </tr>
                 </tbody>
             </table>
@@ -191,7 +220,7 @@
 
     <section id="validity">
         <h2>數據有效性檢驗</h2>
-        <p>確保數據合理並符合既定規則。</p>
+        <p>由系統檢查輸入是否合理並符合規則。</p>
         <div class="table-wrap">
             <table>
                 <thead>
@@ -204,63 +233,97 @@
                 <tbody>
                     <tr>
                         <td>完整性檢查</td>
-                        <td>確保必填欄位中有數據。</td>
-                        <td>申請人必須提供姓名。</td>
+                        <td>必填欄位不可留空。</td>
+                        <td>必須提供姓名。</td>
                     </tr>
                     <tr>
                         <td>固定值檢查</td>
-                        <td>數據只能來自指定集合。</td>
-                        <td>性別只可為「M」或「F」。</td>
+                        <td>只接受特定集合值。</td>
+                        <td>性別為「M」或「F」。</td>
                     </tr>
                     <tr>
                         <td>類型檢查</td>
-                        <td>欄位必須符合指定數據類型。</td>
-                        <td>年齡欄需為數字。</td>
+                        <td>數據類型需正確。</td>
+                        <td>年齡必須是數字。</td>
                     </tr>
                     <tr>
                         <td>範圍檢查</td>
-                        <td>數值需位於允許範圍。</td>
-                        <td>年齡必須大於 12 歲。</td>
+                        <td>數值需在指定範圍。</td>
+                        <td>年齡大於 12 歲。</td>
                     </tr>
                     <tr>
                         <td>長度檢查</td>
-                        <td>字符數需落在指定長度。</td>
-                        <td>電話號碼需 8 位。</td>
+                        <td>字符數在指定長度。</td>
+                        <td>電話需 8 位。</td>
                     </tr>
                     <tr>
                         <td>格式檢查</td>
-                        <td>內容需符合格式樣式。</td>
-                        <td>電郵必須包含「@」。</td>
+                        <td>符合格式樣式。</td>
+                        <td>電郵含「@」。</td>
                     </tr>
                     <tr>
                         <td>一致性檢查</td>
-                        <td>相關欄位互相不矛盾。</td>
-                        <td>出生日期需與證件資料一致。</td>
+                        <td>相關欄位不矛盾。</td>
+                        <td>出生資料需一致。</td>
                     </tr>
                     <tr>
                         <td>唯一性檢查</td>
-                        <td>欄位值在資料集中只出現一次。</td>
+                        <td>數據只出現一次。</td>
                         <td>學生編號不可重複。</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
         <h3>介面配合</h3>
         <ul>
-            <li>下拉式選單 / 單選按鈕：強制固定值檢查。</li>
-            <li>複選框：允許多個指定值。</li>
-            <li>日期選擇器：限制輸入為有效日期與正確格式。</li>
+            <li>下拉式選單 / 單選按鈕：固定值檢查。</li>
+            <li>複選框：多個指定值。</li>
+            <li>日期選擇器：只輸入有效日期與格式。</li>
         </ul>
+
+        <div class="ui-demo">
+            <div class="control-group">
+                <label for="selectGender">下拉式選單</label>
+                <select id="selectGender">
+                    <option value="">請選擇性別</option>
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                </select>
+                <div id="statusSelect" class="status fail">未通過：尚未選擇固定值。</div>
+            </div>
+            <div class="control-group">
+                <label>單選按鈕</label>
+                <div>
+                    <label><input type="radio" name="level" value="junior" /> Junior</label>
+                    <label style="margin-left:12px;"><input type="radio" name="level" value="senior" /> Senior</label>
+                </div>
+                <div id="statusRadio" class="status fail">未通過：請選擇其中一個固定值。</div>
+            </div>
+            <div class="control-group">
+                <label>複選框（可選多個指定值）</label>
+                <div>
+                    <label><input type="checkbox" name="interest" value="ai" /> AI</label>
+                    <label style="margin-left:12px;"><input type="checkbox" name="interest" value="iot" /> IoT</label>
+                    <label style="margin-left:12px;"><input type="checkbox" name="interest" value="db" /> DB</label>
+                </div>
+                <div id="statusCheckbox" class="status fail">未通過：至少勾選一個允許值。</div>
+            </div>
+            <div class="control-group">
+                <label for="dateInput">日期選擇器</label>
+                <input type="date" id="dateInput" />
+                <div id="statusDate" class="status fail">未通過：請輸入有效日期（DD/MM/YYYY）。</div>
+            </div>
+        </div>
     </section>
 
     <section id="parity">
         <h2>奇偶檢測</h2>
-        <p>二進制碼附加奇偶檢驗位，要求 1 的總數為偶數或奇數。</p>
-        <h3>計算步驟</h3>
+        <p>在二進制碼末端附加檢驗位，確保 1 的總數符合偶數或奇數規則。</p>
         <ol>
             <li>整理原始二進制碼。</li>
             <li>計算 1 的總數。</li>
-            <li>依照選定的奇偶制判斷是否通過。</li>
+            <li>與所選奇偶制比較。</li>
         </ol>
         <div class="parity-controls">
             <label><input type="radio" name="parityMode" value="even" checked /> 偶數檢測</label>
@@ -272,9 +335,9 @@
 
     <section id="check-digit">
         <h2>檢查數位</h2>
-        <p>檢查數位由算法產生並附於數字末端，用於身份證號碼、書號、信用卡等。</p>
+        <p>由算法生成並附於數字末端，常見於身份證、書號、信用卡。</p>
         <div class="list-card">
-            <strong>例：</strong> 香港身份證 <code>A123456(7)</code>。括號內的「7」是檢查數位，源自加權和對 11 取餘的規則，用於辨識輸入錯誤。
+            <strong>例：</strong> 香港身份證 <code>A123456(7)</code>，括號的「7」為檢查數位，用來辨識輸入錯誤。
         </div>
     </section>
 
@@ -284,11 +347,11 @@
         <div class="flex-col">
             <div class="list-card">
                 <strong>輸入數據兩次</strong>
-                <p>同一操作員連續輸入兩次，系統自動比對差異。</p>
+                <p>同一操作員連續輸入兩遍，系統自動比對差異。</p>
             </div>
             <div class="list-card">
                 <strong>雙重數據輸入</strong>
-                <p>兩位操作員獨立輸入同一批數據，再由系統比對。</p>
+                <p>兩位操作員分別輸入同一批資料，再比對是否一致。</p>
             </div>
             <div class="list-card">
                 <strong>校對數據</strong>
@@ -306,7 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
         { label: "C", value: "0010 0101" },
         { label: "D", value: "0100 1000" }
     ];
-
     const codeList = document.getElementById("codeList");
     const paritySteps = document.getElementById("paritySteps");
     let currentCode = codes[0];
@@ -321,33 +383,95 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", () => {
                 currentCode = code;
                 renderCodeButtons();
-                renderSteps();
+                renderParity();
             });
             codeList.appendChild(btn);
         });
     }
 
-    function renderSteps() {
+    function renderParity() {
         const raw = currentCode.value.replace(/\s+/g, "");
         const ones = raw.split("").filter(bit => bit === "1").length;
-        const parityMode = document.querySelector('input[name="parityMode"]:checked').value;
+        const mode = document.querySelector('input[name="parityMode"]:checked').value;
         const isEven = ones % 2 === 0;
-        const passes = parityMode === "even" ? isEven : !isEven;
+        const passes = mode === "even" ? isEven : !isEven;
 
         paritySteps.innerHTML = `
             <li><span>步驟 1：</span>移除空格 → ${raw}</li>
             <li><span>步驟 2：</span>計算 1 的數量 → ${ones}</li>
-            <li><span>步驟 3：</span>${parityMode === "even" ? "要求偶數" : "要求奇數"} → ${isEven ? "偶數" : "奇數"}</li>
+            <li><span>步驟 3：</span>${mode === "even" ? "要求偶數" : "要求奇數"} → ${isEven ? "偶數" : "奇數"}</li>
             <li class="${passes ? "pass" : "fail"}"><span>結論：</span>${passes ? "通過奇偶檢測" : "未通過"}。</li>
         `;
     }
 
     document.querySelectorAll('input[name="parityMode"]').forEach(radio => {
-        radio.addEventListener("change", renderSteps);
+        radio.addEventListener("change", renderParity);
     });
 
     renderCodeButtons();
-    renderSteps();
+    renderParity();
+
+    // 介面配合互動
+    const selectGender = document.getElementById("selectGender");
+    const statusSelect = document.getElementById("statusSelect");
+    const statusRadio = document.getElementById("statusRadio");
+    const statusCheckbox = document.getElementById("statusCheckbox");
+    const statusDate = document.getElementById("statusDate");
+    const radioGroup = document.querySelectorAll('input[name="level"]');
+    const checkboxGroup = document.querySelectorAll('input[name="interest"]');
+    const dateInput = document.getElementById("dateInput");
+
+    function updateSelect() {
+        if (selectGender.value) {
+            statusSelect.textContent = "通過：已從固定值清單中選擇。";
+            statusSelect.className = "status pass";
+        } else {
+            statusSelect.textContent = "未通過：尚未選擇固定值。";
+            statusSelect.className = "status fail";
+        }
+    }
+
+    function updateRadio() {
+        const chosen = Array.from(radioGroup).some(radio => radio.checked);
+        if (chosen) {
+            statusRadio.textContent = "通過：單選按鈕已鎖定一個允許值。";
+            statusRadio.className = "status pass";
+        } else {
+            statusRadio.textContent = "未通過：請選擇其中一個固定值。";
+            statusRadio.className = "status fail";
+        }
+    }
+
+    function updateCheckbox() {
+        const checked = Array.from(checkboxGroup).filter(box => box.checked).length;
+        if (checked) {
+            statusCheckbox.textContent = `通過：已選擇 ${checked} 個允許值。`;
+            statusCheckbox.className = "status pass";
+        } else {
+            statusCheckbox.textContent = "未通過：至少勾選一個允許值。";
+            statusCheckbox.className = "status fail";
+        }
+    }
+
+    function updateDate() {
+        if (dateInput.value) {
+            statusDate.textContent = `通過：輸入日期 ${dateInput.value}。`;
+            statusDate.className = "status pass";
+        } else {
+            statusDate.textContent = "未通過：請輸入有效日期（DD/MM/YYYY）。";
+            statusDate.className = "status fail";
+        }
+    }
+
+    selectGender.addEventListener("change", updateSelect);
+    radioGroup.forEach(radio => radio.addEventListener("change", updateRadio));
+    checkboxGroup.forEach(box => box.addEventListener("change", updateCheckbox));
+    dateInput.addEventListener("change", updateDate);
+
+    updateSelect();
+    updateRadio();
+    updateCheckbox();
+    updateDate();
 });
 </script>
 </body>

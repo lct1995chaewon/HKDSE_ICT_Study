@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>第二課 數據控制及數據組織</title>
+    <style>
+        :root {
+            color-scheme: light;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background: #f4f6fb;
+            color: #1f2933;
+            line-height: 1.6;
+        }
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+        h1 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+        h2 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        h3 {
+            font-size: 1.05rem;
+            margin: 16px 0 8px;
+            color: #0f172a;
+        }
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 640px;
+        }
+        th, td {
+            border: 1px solid #dbe2ef;
+            padding: 10px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #e8efff;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .list-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            background: #f9fbff;
+        }
+        .parity-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .parity-codes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .code-btn {
+            border: 1px solid #cbd5f5;
+            border-radius: 12px;
+            padding: 12px;
+            background: #f1f5ff;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .code-btn.active {
+            background: #0ea5e9;
+            color: #ffffff;
+            border-color: #0ea5e9;
+        }
+        .parity-steps {
+            margin-top: 12px;
+            padding-left: 20px;
+        }
+        .parity-steps li {
+            margin-bottom: 6px;
+        }
+        .parity-steps li span {
+            font-weight: 600;
+            color: #0f172a;
+        }
+        .parity-steps li.pass {
+            color: #0f8b2c;
+            font-weight: 600;
+        }
+        .parity-steps li.fail {
+            color: #b42318;
+            font-weight: 600;
+        }
+        @media (max-width: 600px) {
+            section {
+                padding: 16px;
+            }
+            table {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>第二課 數據控制及數據組織</h1>
+
+    <section id="data-control">
+        <h2>2.2 數據控制</h2>
+        <div class="flex-col">
+            <div>
+                <span class="badge">定義</span>
+                管理數據的全過程，核心步驟：數據有效性檢驗、數據驗證。
+            </div>
+            <div>
+                <span class="badge">無用輸入，無用輸出</span>
+                不可靠或不協調的輸入 → 無法產生有用輸出。
+            </div>
+        </div>
+        <h3>常見輸入錯誤</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>錯誤</th>
+                        <th>說明</th>
+                        <th>例子</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>數據來源錯誤</td>
+                        <td>來源提供了不正確的數值。</td>
+                        <td>用戶遞交不存在的電郵地址。</td>
+                    </tr>
+                    <tr>
+                        <td>轉錄錯誤</td>
+                        <td>讀／聽／輸入時誤植。</td>
+                        <td>把「冶」打成「治」。</td>
+                    </tr>
+                    <tr>
+                        <td>換位錯誤</td>
+                        <td>數值位置被調轉。</td>
+                        <td>「$15」被錯記為「$51」。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="validity">
+        <h2>數據有效性檢驗</h2>
+        <p>確保數據合理並符合既定規則。</p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>類型</th>
+                        <th>功能</th>
+                        <th>例子</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>完整性檢查</td>
+                        <td>確保必填欄位中有數據。</td>
+                        <td>申請人必須提供姓名。</td>
+                    </tr>
+                    <tr>
+                        <td>固定值檢查</td>
+                        <td>數據只能來自指定集合。</td>
+                        <td>性別只可為「M」或「F」。</td>
+                    </tr>
+                    <tr>
+                        <td>類型檢查</td>
+                        <td>欄位必須符合指定數據類型。</td>
+                        <td>年齡欄需為數字。</td>
+                    </tr>
+                    <tr>
+                        <td>範圍檢查</td>
+                        <td>數值需位於允許範圍。</td>
+                        <td>年齡必須大於 12 歲。</td>
+                    </tr>
+                    <tr>
+                        <td>長度檢查</td>
+                        <td>字符數需落在指定長度。</td>
+                        <td>電話號碼需 8 位。</td>
+                    </tr>
+                    <tr>
+                        <td>格式檢查</td>
+                        <td>內容需符合格式樣式。</td>
+                        <td>電郵必須包含「@」。</td>
+                    </tr>
+                    <tr>
+                        <td>一致性檢查</td>
+                        <td>相關欄位互相不矛盾。</td>
+                        <td>出生日期需與證件資料一致。</td>
+                    </tr>
+                    <tr>
+                        <td>唯一性檢查</td>
+                        <td>欄位值在資料集中只出現一次。</td>
+                        <td>學生編號不可重複。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h3>介面配合</h3>
+        <ul>
+            <li>下拉式選單 / 單選按鈕：強制固定值檢查。</li>
+            <li>複選框：允許多個指定值。</li>
+            <li>日期選擇器：限制輸入為有效日期與正確格式。</li>
+        </ul>
+    </section>
+
+    <section id="parity">
+        <h2>奇偶檢測</h2>
+        <p>二進制碼附加奇偶檢驗位，要求 1 的總數為偶數或奇數。</p>
+        <h3>計算步驟</h3>
+        <ol>
+            <li>整理原始二進制碼。</li>
+            <li>計算 1 的總數。</li>
+            <li>依照選定的奇偶制判斷是否通過。</li>
+        </ol>
+        <div class="parity-controls">
+            <label><input type="radio" name="parityMode" value="even" checked /> 偶數檢測</label>
+            <label><input type="radio" name="parityMode" value="odd" /> 奇數檢測</label>
+        </div>
+        <div class="parity-codes" id="codeList"></div>
+        <ul class="parity-steps" id="paritySteps"></ul>
+    </section>
+
+    <section id="check-digit">
+        <h2>檢查數位</h2>
+        <p>檢查數位由算法產生並附於數字末端，用於身份證號碼、書號、信用卡等。</p>
+        <div class="list-card">
+            <strong>例：</strong> 香港身份證 <code>A123456(7)</code>。括號內的「7」是檢查數位，源自加權和對 11 取餘的規則，用於辨識輸入錯誤。
+        </div>
+    </section>
+
+    <section id="verification">
+        <h2>數據驗證（頁 18）</h2>
+        <p>確保數據在媒體之間傳輸時保持準確與一致。</p>
+        <div class="flex-col">
+            <div class="list-card">
+                <strong>輸入數據兩次</strong>
+                <p>同一操作員連續輸入兩次，系統自動比對差異。</p>
+            </div>
+            <div class="list-card">
+                <strong>雙重數據輸入</strong>
+                <p>兩位操作員獨立輸入同一批數據，再由系統比對。</p>
+            </div>
+            <div class="list-card">
+                <strong>校對數據</strong>
+                <p>另一位操作員把已輸入內容與原始檔案逐項核對。</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const codes = [
+        { label: "A", value: "1101 1000" },
+        { label: "B", value: "1110 1011" },
+        { label: "C", value: "0010 0101" },
+        { label: "D", value: "0100 1000" }
+    ];
+
+    const codeList = document.getElementById("codeList");
+    const paritySteps = document.getElementById("paritySteps");
+    let currentCode = codes[0];
+
+    function renderCodeButtons() {
+        codeList.innerHTML = "";
+        codes.forEach(code => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = `code-btn${code.value === currentCode.value ? " active" : ""}`;
+            btn.textContent = `${code.label}｜${code.value}`;
+            btn.addEventListener("click", () => {
+                currentCode = code;
+                renderCodeButtons();
+                renderSteps();
+            });
+            codeList.appendChild(btn);
+        });
+    }
+
+    function renderSteps() {
+        const raw = currentCode.value.replace(/\s+/g, "");
+        const ones = raw.split("").filter(bit => bit === "1").length;
+        const parityMode = document.querySelector('input[name="parityMode"]:checked').value;
+        const isEven = ones % 2 === 0;
+        const passes = parityMode === "even" ? isEven : !isEven;
+
+        paritySteps.innerHTML = `
+            <li><span>步驟 1：</span>移除空格 → ${raw}</li>
+            <li><span>步驟 2：</span>計算 1 的數量 → ${ones}</li>
+            <li><span>步驟 3：</span>${parityMode === "even" ? "要求偶數" : "要求奇數"} → ${isEven ? "偶數" : "奇數"}</li>
+            <li class="${passes ? "pass" : "fail"}"><span>結論：</span>${passes ? "通過奇偶檢測" : "未通過"}。</li>
+        `;
+    }
+
+    document.querySelectorAll('input[name="parityMode"]').forEach(radio => {
+        radio.addEventListener("change", renderSteps);
+    });
+
+    renderCodeButtons();
+    renderSteps();
+});
+</script>
+</body>
+</html>

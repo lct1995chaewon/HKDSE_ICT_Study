@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>第一課 輸入與輸出設備</title>
+<style>
+    :root { color-scheme: light; }
+    body {
+        margin: 0;
+        font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+        background: #f4f6fb;
+        color: #0f172a;
+        line-height: 1.6;
+    }
+    main {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 32px 16px 64px;
+    }
+    h1 { text-align: center; margin-bottom: 20px; font-size: 2rem; }
+    section {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 14px 36px rgba(15,23,42,0.12);
+    }
+    h2 { font-size: 1.3rem; margin-bottom: 12px; }
+    h3 { font-size: 1.05rem; margin: 16px 0 8px; }
+    ol { padding-left: 20px; }
+    ul { padding-left: 20px; margin: 8px 0; }
+    .grid { display: grid; gap: 14px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 16px;
+        background: #f9fbff;
+    }
+    .table-wrap { overflow-x: auto; }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #dbe2f3;
+        padding: 10px 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th { background: #e8efff; font-weight: 600; }
+    label { font-weight: 600; display: block; margin-bottom: 6px; }
+    select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #94a3b8;
+        font-size: 1rem;
+        font-family: inherit;
+        background: #ffffff;
+    }
+    .info-box {
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 14px;
+        background: #eef2ff;
+        color: #312e81;
+    }
+    @media (max-width: 640px) {
+        section { padding: 20px; }
+        table { font-size: 0.95rem; }
+    }
+</style>
+</head>
+<body>
+<main>
+    <h1>第一課｜輸入與輸出設備 溫習簡報</h1>
+
+    <section>
+        <h2>1.1 輸入－處理－輸出 (IPO) 循環</h2>
+        <ol>
+            <li><strong>輸入：</strong>藉輸入設備取得指令或感測數據（鍵盤、感應器等）。</li>
+            <li><strong>處理：</strong>程式執行運算、更新或提取儲存的數據。</li>
+            <li><strong>輸出：</strong>以顯示器、打印機、揚聲器等呈現有意義的資訊。</li>
+        </ol>
+        <div class="card">
+            <strong>感測器日常例子：</strong>
+            <ul>
+                <li>自動門：紅外線 / 超聲波感應器偵測有人靠近。</li>
+                <li>自動沖水：距離或紅外線感應器偵測離開。</li>
+                <li>冷氣恆溫：温度與濕度感應器回饋予控制系統。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>1.2 輸入設備分類</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>鍵盤類</h3>
+                <ul>
+                    <li>全尺寸鍵盤：>100鍵，輸入 ASCII / Unicode 代碼。</li>
+                    <li>數字鍵盤：銀行、POS 輸入 PIN / 金額。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>定點設備</h3>
+                <ul>
+                    <li>動作追蹤：滑鼠、軌跡球。</li>
+                    <li>位置追蹤：觸控板、觸控屏。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>音訊與樂器</h3>
+                <ul>
+                    <li>麥克風：把聲波轉成數碼音訊，可做語音識別。</li>
+                    <li>MIDI 鍵盤：輸入音符資料，不受環境噪聲。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>圖像與視像</h3>
+                <ul>
+                    <li>掃描器（平板、3D）：將紙本轉成圖像；配 OCR 得文字。</li>
+                    <li>數碼相機 / 錄影機 / 網絡攝影機：拍照、錄影或串流。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>自動輸入</h3>
+                <ul>
+                    <li>條碼、二維碼掃描器：迅速輸入產品 ID / 字串。</li>
+                    <li>光學標記閱讀器、磁帶卡與智能卡閱讀器。</li>
+                    <li>感應器：光、溫濕度、超聲波、陀螺儀等。</li>
+                    <li>生物識別：指紋、臉部、虹膜、聲紋。</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>互動：選擇輸入類型查看要點</h3>
+        <label for="inputSelect">輸入類型</label>
+        <select id="inputSelect">
+            <option value="keyboard">鍵盤/數字鍵盤</option>
+            <option value="pointing">定點設備</option>
+            <option value="audio">音訊 / MIDI</option>
+            <option value="image">圖像 / 視像</option>
+            <option value="auto">自動輸入與感應器</option>
+        </select>
+        <div id="inputInfo" class="info-box"></div>
+    </section>
+
+    <section>
+        <h2>1.3 輸出設備</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>顯示器</h3>
+                <ul>
+                    <li>關鍵規格：尺寸、解像度、像素密度(ppi)、色深、長寬比、更新率。</li>
+                    <li>常見介面：VGA、DVI、HDMI、DisplayPort。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>投影機</h3>
+                <ul>
+                    <li>適合多人或可變尺寸畫面。</li>
+                    <li>需考慮環境光、便攜性。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>打印機</h3>
+                <ul>
+                    <li>感熱式：快速、低成本、收據用。</li>
+                    <li>噴墨：色彩細膩，墨盒易堵。</li>
+                    <li>激光：速度快、遇水不暈、每頁成本低。</li>
+                    <li>繪圖儀：高精度向量圖。</li>
+                    <li>3D 打印：把 3D 模型實體化。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>聲音輸出</h3>
+                <ul>
+                    <li>揚聲器：覆蓋廣、易受噪音。</li>
+                    <li>頭戴式/入耳式耳機：個人化、可整合麥克風。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>1.4 電腦應用實例</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>商業用途</h3>
+                <ul>
+                    <li>視像會議：遠端協作。</li>
+                    <li>POS / 自助結賬：條碼掃描器 + 智能卡閱讀器 + 感熱/激光打印機。</li>
+                    <li>電子支付、電子收據。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>教育與公共服務</h3>
+                <ul>
+                    <li>網上課程、視像授課。</li>
+                    <li>圖書館目錄終端、自助借書機。</li>
+                    <li>博物館資訊站提供互動解說。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+const inputNotes = {
+    keyboard: "鍵盤/數字鍵盤：輸入文字、數字、算術符號。銀行與 POS 依賴數字鍵盤輸入金額與密碼。",
+    pointing: "定點設備：滑鼠、觸控板、觸控屏。動作追蹤以相對運動控制游標，位置追蹤直接對應螢幕座標。",
+    audio: "音訊輸入：麥克風把聲波數位化，可錄音、語音輸入。MIDI 鍵盤以訊號描述音符，不受噪音影響。",
+    image: "圖像/視像：掃描器把紙本變數碼圖像並可配 OCR。數碼相機/錄影機/網絡攝影機捕捉影像或直播。",
+    auto: "自動輸入：條碼/QR、光學標記、磁帶卡/智能卡、各式感應器、生物識別設備，快速準確取得環境或身份數據。"
+};
+const inputSelect = document.getElementById("inputSelect");
+const inputInfo = document.getElementById("inputInfo");
+function updateInputInfo() {
+    inputInfo.textContent = inputNotes[inputSelect.value];
+}
+inputSelect.addEventListener("change", updateInputInfo);
+updateInputInfo();
+</script>
+</body>
+</html>

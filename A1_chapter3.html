@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>第三課 數據表示</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+            background: #f4f6fb;
+            color: #0f172a;
+            line-height: 1.6;
+        }
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+        h1 {text-align: center;font-size: 1.75rem;margin-bottom: 16px;}
+        section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+        }
+        h2 {font-size: 1.25rem;margin-bottom: 12px;}
+        h3 {font-size: 1.05rem;margin: 16px 0 8px;}
+        ul,ol {margin: 6px 0 0;padding-left: 20px;}
+        .card{
+            border:1px solid #e2e8f0;
+            border-radius:12px;
+            padding:14px;
+            background:#f8fbff;
+            margin-top:10px;
+        }
+        .grid{display:grid;gap:12px;}
+        .grid-2{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+        .table-wrap{overflow-x:auto;margin-top:10px;}
+        table{width:100%;border-collapse:collapse;min-width:600px;}
+        th,td{border:1px solid #dbe2ef;padding:10px 12px;text-align:left;}
+        th{background:#e8efff;font-weight:600;}
+        code{font-family:"JetBrains Mono","Fira Code",monospace;background:#e2e8f0;padding:2px 4px;border-radius:6px;}
+        .panel{
+            border:1px solid #dbeafe;
+            border-radius:12px;
+            background:#f1f5ff;
+            padding:16px;
+            margin-top:12px;
+            display:grid;
+            gap:10px;
+        }
+        label{font-weight:600;}
+        input[type="number"],select{
+            width:100%;
+            padding:8px 10px;
+            border-radius:8px;
+            border:1px solid #94a3b8;
+            font-size:1rem;
+        }
+        .status{
+            padding:10px;
+            border-radius:10px;
+            background:#eef2ff;
+            color:#1e1b4b;
+            font-weight:600;
+        }
+        .status.pass{background:#dcfce7;color:#166534;}
+        .steps li{margin-bottom:4px;}
+        @media (max-width:600px){section{padding:16px;}}
+    </style>
+</head>
+<body>
+<main>
+    <h1>第三課 數據表示</h1>
+
+    <section id="binary-basics">
+        <h2>3.1 數字系統與單位</h2>
+        <ul>
+            <li>位元 (bit) → 0 或 1；1 Byte = 8 bits。</li>
+            <li>容量：1 KB = 2<sup>10</sup> B，1 MB = 2<sup>20</sup> B。</li>
+            <li>傳輸率：kbps = 10<sup>3</sup> bps，Mbps = 10<sup>6</sup> bps。</li>
+        </ul>
+
+        <h3>十進 → 二進（連續除 2）</h3>
+        <div class="panel">
+            <label for="decInput">十進數 (0–255)</label>
+            <input type="number" id="decInput" min="0" max="255" value="118">
+            <div id="binaryResult" class="status"></div>
+            <ol id="divisionSteps" class="steps"></ol>
+        </div>
+
+        <h3>二進 → 十進（位權展開）</h3>
+        <div class="card">
+            <strong>示例：</strong> <code>1011&nbsp;0101</code><br>
+            2<sup>7</sup> + 2<sup>5</sup> + 2<sup>4</sup> + 2<sup>2</sup> + 2<sup>0</sup> = 181。
+        </div>
+
+        <h3>十六進 ↔ 二進</h3>
+        <div class="grid grid-2">
+            <div class="card">
+                <strong>二進 → 十六進：</strong><br>
+                <code>1110&nbsp;1101</code> → <code>1110</code>(E) <code>1101</code>(D) → <code>ED</code>。
+            </div>
+            <div class="card">
+                <strong>十六進 → 二進：</strong><br>
+                <code>9C7E</code> → 9(1001) C(1100) 7(0111) E(1110)。 
+            </div>
+        </div>
+    </section>
+
+    <section id="encoding">
+        <h2>3.2 字符編碼</h2>
+        <ul>
+            <li>字符透過編碼系統轉成位元樣式。</li>
+            <li>ASCII：7 bit，128 個符號。</li>
+            <li>大五碼／國標碼：各 2 Bytes，中文＋英文。</li>
+            <li>Unicode（UTF-8/UTF-16）：1–4 Bytes，可變長度支援多語言。</li>
+        </ul>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>系統</th>
+                        <th>語言</th>
+                        <th>每字符大小</th>
+                        <th>備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ASCII</td><td>英文</td><td>7 bits (1 Byte)</td><td>字符集最小。</td>
+                    </tr>
+                    <tr>
+                        <td>Big-5</td><td>繁體中文</td><td>2 Bytes</td><td>與國標碼不兼容。</td>
+                    </tr>
+                    <tr>
+                        <td>GB</td><td>簡體中文</td><td>2 Bytes</td><td>支援簡中。</td>
+                    </tr>
+                    <tr>
+                        <td>Unicode</td><td>多語言</td><td>1–4 Bytes</td><td>UTF-8 常見。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>編碼儲存量估算</h3>
+        <div class="panel">
+            <label for="charCount">字符數</label>
+            <input type="number" id="charCount" min="1" value="10">
+            <label for="encodingSelect">編碼系統</label>
+            <select id="encodingSelect">
+                <option value="ascii">ASCII</option>
+                <option value="big5">大五碼</option>
+                <option value="gb">國標碼</option>
+                <option value="utf8">Unicode (UTF-8)</option>
+            </select>
+            <div id="encodingOutput" class="status"></div>
+        </div>
+    </section>
+
+    <section id="twos">
+        <h2>3.3 二補碼（8 位元）</h2>
+        <div class="card">
+            <strong>範圍：</strong> −128 至 +127。<br>
+            <strong>口訣：</strong> 1變0 0變1 再加1。
+        </div>
+        <h3>步驟</h3>
+        <ol>
+            <li>寫出 8 位元原碼。</li>
+            <li>負數：全部位翻轉。</li>
+            <li>負數：翻轉結果 + 1。</li>
+        </ol>
+        <div class="grid grid-2">
+            <div class="card"><strong>+25：</strong> <code>0001&nbsp;1001</code>（正數保持原碼）。</div>
+            <div class="card"><strong>−25：</strong><br>原碼 <code>0001&nbsp;1001</code><br>翻轉 <code>1110&nbsp;0110</code><br>+1 → <code>1110&nbsp;0111</code></div>
+        </div>
+        <div class="panel">
+            <label for="twosInput">輸入整數 (−128 至 127)</label>
+            <input type="number" id="twosInput" min="-128" max="127" value="-42">
+            <div id="twosSummary" class="status"></div>
+            <ol id="twosSteps" class="steps"></ol>
+        </div>
+    </section>
+
+    <section id="barcode">
+        <h2>3.4 條碼與二維碼</h2>
+        <ul>
+            <li>條碼：條形＋空白表示產品編號；需留靜區及固定寬度。</li>
+            <li>二維碼：黑白模組可儲存 >1000 字符，具誤差修正。</li>
+        </ul>
+        <div class="grid grid-2">
+            <div class="card">
+                <strong>條碼元素：</strong><br>
+                靜區 → 起始碼 → 數據 → 校驗 → 終止碼。
+            </div>
+            <div class="card">
+                <strong>二維碼元素：</strong><br>
+                定位標誌、格式資訊、數據區、誤差修正區。
+            </div>
+        </div>
+
+        <h3>優勢比較</h3>
+        <div class="grid grid-2">
+            <div class="card">
+                <strong>二維碼比條碼的好處：</strong>
+                <ul>
+                    <li>可從任何方向掃描，容許旋轉／扭曲。</li>
+                    <li>誤差修正可恢復約 30% 數據，中心貼標誌仍可讀。</li>
+                    <li>容量大，可儲存長網址、聯絡資料、多語字串。</li>
+                    <li>可編碼數字、文字、URL、聯絡卡片等多種資料。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <strong>條碼比二維碼的好處：</strong>
+                <ul>
+                    <li>結構簡單，掃描器及列印成本較低。</li>
+                    <li>掃描速度快，適合超市收銀等連續輸入。</li>
+                    <li>資料短小（如產品 ID）時清晰易讀。</li>
+                    <li>傳統系統（POS / 庫存）已廣泛支援，兼容性高。</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>代碼選擇小工具</h3>
+        <div class="panel">
+            <label>需求</label>
+            <select id="codeNeed">
+                <option value="speed">快速結帳（短數字）</option>
+                <option value="damage">容忍刮花／貼標誌</option>
+                <option value="data">儲存長網址或聯絡資料</option>
+            </select>
+            <div id="codeAdvice" class="status"></div>
+        </div>
+    </section>
+</main>
+
+<script>
+function updateBinaryConverter(value){
+    const result=document.getElementById("binaryResult");
+    const stepsList=document.getElementById("divisionSteps");
+    const n=Number(value);
+    if(Number.isNaN(n)||n<0||n>255){
+        result.textContent="請輸入 0–255。";
+        stepsList.innerHTML="";
+        return;
+    }
+    if(n===0){
+        result.textContent="十進 0 → 二進 0000 0000";
+        stepsList.innerHTML="<li>0 ÷ 2 = 0 餘 0</li>";
+        return;
+    }
+    let current=n;
+    const steps=[];
+    while(current>0){
+        const quotient=Math.floor(current/2);
+        const remainder=current%2;
+        steps.push(`${current} ÷ 2 = ${quotient} 餘 ${remainder}`);
+        current=quotient;
+    }
+    const binary=n.toString(2).padStart(8,"0");
+    result.textContent=`十進 ${n} → 二進 ${binary.slice(0,4)} ${binary.slice(4)}`;
+    stepsList.innerHTML=steps.map((step,idx)=>`<li>步驟 ${idx+1}：${step}</li>`).join("");
+}
+function toBinaryPad(value){return value.toString(2).padStart(8,"0");}
+function invertBits(bin){return bin.replace(/./g,bit=>bit==="0"?"1":"0");}
+function addOne(bin){
+    let carry=1;
+    const arr=bin.split("").reverse();
+    for(let i=0;i<arr.length;i++){
+        if(carry===0)break;
+        if(arr[i]==="0"){arr[i]="1";carry=0;}else{arr[i]="0";}
+    }
+    return arr.reverse().join("");
+}
+function updateTwosComplement(value){
+    const summary=document.getElementById("twosSummary");
+    const stepsList=document.getElementById("twosSteps");
+    const n=Number(value);
+    if(Number.isNaN(n)||n<-128||n>127){
+        summary.textContent="請輸入 −128 至 127。";
+        stepsList.innerHTML="";
+        return;
+    }
+    if(n>=0){
+        const bin=toBinaryPad(n);
+        summary.textContent=`正數 → ${bin.slice(0,4)} ${bin.slice(4)}`;
+        stepsList.innerHTML=`<li>步驟 1：寫 8 位元 → ${bin}</li>`;
+    }else{
+        const absBin=toBinaryPad(Math.abs(n));
+        const inverted=invertBits(absBin);
+        const twos=addOne(inverted);
+        summary.textContent=`負數 → ${twos.slice(0,4)} ${twos.slice(4)}`;
+        stepsList.innerHTML=`
+            <li>步驟 1：絕對值 ${Math.abs(n)} → ${absBin}</li>
+            <li>步驟 2：1變0 0變1 → ${inverted}</li>
+            <li>步驟 3：再加1 → ${twos}</li>
+        `;
+    }
+}
+function updateEncodingCalc(){
+    const count=Math.max(1,Number(document.getElementById("charCount").value)||1);
+    const mode=document.getElementById("encodingSelect").value;
+    const output=document.getElementById("encodingOutput");
+    switch(mode){
+        case "ascii":
+            output.textContent=`ASCII：${count} 個字符需 ${count} Bytes（${count*8} bits）。`;
+            break;
+        case "big5":
+            output.textContent=`大五碼：${count} 個字符需 ${count*2} Bytes（${count*16} bits）。`;
+            break;
+        case "gb":
+            output.textContent=`國標碼：${count} 個字符需 ${count*2} Bytes（${count*16} bits）。`;
+            break;
+        case "utf8":
+            output.textContent=`Unicode (UTF-8)：${count} 個字符介於 ${count} 至 ${count*4} Bytes（視語言而定）。`;
+            break;
+    }
+}
+function updateCodeAdvisor(){
+    const need=document.getElementById("codeNeed").value;
+    const advice=document.getElementById("codeAdvice");
+    if(need==="speed"){
+        advice.textContent="建議：使用條碼，掃描快捷，成本低。";
+    }else if(need==="damage"){
+        advice.textContent="建議：使用二維碼，可修復約 30% 數據，容忍刮花。";
+    }else{
+        advice.textContent="建議：使用二維碼，可儲存長文字／URL。";
+    }
+    advice.className="status pass";
+}
+document.addEventListener("DOMContentLoaded",()=>{
+    const decInput=document.getElementById("decInput");
+    const twosInput=document.getElementById("twosInput");
+    const charCount=document.getElementById("charCount");
+    const encodingSelect=document.getElementById("encodingSelect");
+    const codeNeed=document.getElementById("codeNeed");
+
+    decInput.addEventListener("input",e=>updateBinaryConverter(e.target.value));
+    twosInput.addEventListener("input",e=>updateTwosComplement(e.target.value));
+    charCount.addEventListener("input",updateEncodingCalc);
+    encodingSelect.addEventListener("change",updateEncodingCalc);
+    codeNeed.addEventListener("change",updateCodeAdvisor);
+
+    updateBinaryConverter(decInput.value);
+    updateTwosComplement(twosInput.value);
+    updateEncodingCalc();
+    updateCodeAdvisor();
+});
+</script>
+</body>
+</html>

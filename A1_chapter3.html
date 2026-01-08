@@ -75,8 +75,8 @@
 <main>
     <h1>第三課 數據表示</h1>
 
-    <section id="binary-basics">
-        <h2>3.1 數字系統與單位</h2>
+    <section id="sec3-1">
+        <h2>3.1 數字系統與二補碼（8 位元）</h2>
         <ul>
             <li>位元 (bit) → 0 或 1；1 Byte = 8 bits。</li>
             <li>容量：1 KB = 2<sup>10</sup> B，1 MB = 2<sup>20</sup> B。</li>
@@ -108,14 +108,42 @@
                 <code>9C7E</code> → 9(1001) C(1100) 7(0111) E(1110)。 
             </div>
         </div>
+
+        <h3>有符號整數（二補碼 8 位元）</h3>
+        <div class="card">
+            <strong>範圍：</strong> −128 至 +127。<br>
+            <strong>口訣：</strong> 1變0 0變1 再加1。
+        </div>
+        <ol>
+            <li>寫出 8 位元原碼。</li>
+            <li>負數：全部位翻轉。</li>
+            <li>負數：翻轉結果 + 1。</li>
+        </ol>
+        <div class="grid grid-2">
+            <div class="card"><strong>+25：</strong> <code>0001&nbsp;1001</code>（正數保持原碼）。</div>
+            <div class="card"><strong>−25：</strong><br>原碼 <code>0001&nbsp;1001</code><br>翻轉 <code>1110&nbsp;0110</code><br>+1 → <code>1110&nbsp;0111</code></div>
+        </div>
+        <div class="panel">
+            <label for="twosInput">輸入整數 (−128 至 127)</label>
+            <input type="number" id="twosInput" min="-128" max="127" value="-42">
+            <div id="twosSummary" class="status"></div>
+            <ol id="twosSteps" class="steps"></ol>
+        </div>
     </section>
 
     <section id="encoding">
         <h2>3.2 字符編碼</h2>
+        <div class="card">
+            <strong>字符編碼系統 = 字符 ↔ 位元映射表：</strong>
+            <ul>
+                <li>電腦只識 0/1，任何字符需先轉成位元組合。</li>
+                <li>改用另一套編碼（如 Big-5 ↔ GB）會變亂碼。</li>
+                <li>統一的編碼表確保跨平台還原文字。</li>
+            </ul>
+        </div>
         <ul>
-            <li>字符透過編碼系統轉成位元樣式。</li>
             <li>ASCII：7 bit，128 個符號。</li>
-            <li>大五碼／國標碼：各 2 Bytes，中文＋英文。</li>
+            <li>大五碼／國標碼：各 2 Bytes，繁／簡中文常用。</li>
             <li>Unicode（UTF-8/UTF-16）：1–4 Bytes，可變長度支援多語言。</li>
         </ul>
         <div class="table-wrap">
@@ -160,32 +188,8 @@
         </div>
     </section>
 
-    <section id="twos">
-        <h2>3.3 二補碼（8 位元）</h2>
-        <div class="card">
-            <strong>範圍：</strong> −128 至 +127。<br>
-            <strong>口訣：</strong> 1變0 0變1 再加1。
-        </div>
-        <h3>步驟</h3>
-        <ol>
-            <li>寫出 8 位元原碼。</li>
-            <li>負數：全部位翻轉。</li>
-            <li>負數：翻轉結果 + 1。</li>
-        </ol>
-        <div class="grid grid-2">
-            <div class="card"><strong>+25：</strong> <code>0001&nbsp;1001</code>（正數保持原碼）。</div>
-            <div class="card"><strong>−25：</strong><br>原碼 <code>0001&nbsp;1001</code><br>翻轉 <code>1110&nbsp;0110</code><br>+1 → <code>1110&nbsp;0111</code></div>
-        </div>
-        <div class="panel">
-            <label for="twosInput">輸入整數 (−128 至 127)</label>
-            <input type="number" id="twosInput" min="-128" max="127" value="-42">
-            <div id="twosSummary" class="status"></div>
-            <ol id="twosSteps" class="steps"></ol>
-        </div>
-    </section>
-
     <section id="barcode">
-        <h2>3.4 條碼與二維碼</h2>
+        <h2>3.3 條碼與二維碼</h2>
         <ul>
             <li>條碼：條形＋空白表示產品編號；需留靜區及固定寬度。</li>
             <li>二維碼：黑白模組可儲存 >1000 字符，具誤差修正。</li>
@@ -209,7 +213,7 @@
                     <li>可從任何方向掃描，容許旋轉／扭曲。</li>
                     <li>誤差修正可恢復約 30% 數據，中心貼標誌仍可讀。</li>
                     <li>容量大，可儲存長網址、聯絡資料、多語字串。</li>
-                    <li>可編碼數字、文字、URL、聯絡卡片等多種資料。</li>
+                    <li>可同時編碼數字、文字、URL、聯絡卡片等。</li>
                 </ul>
             </div>
             <div class="card">
@@ -218,7 +222,7 @@
                     <li>結構簡單，掃描器及列印成本較低。</li>
                     <li>掃描速度快，適合超市收銀等連續輸入。</li>
                     <li>資料短小（如產品 ID）時清晰易讀。</li>
-                    <li>傳統系統（POS / 庫存）已廣泛支援，兼容性高。</li>
+                    <li>傳統 POS / 庫存系統廣泛支援，兼容性高。</li>
                 </ul>
             </div>
         </div>

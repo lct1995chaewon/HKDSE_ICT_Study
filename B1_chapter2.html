@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>第二課 電腦硬件</title>
+<style>
+    :root { color-scheme: light; }
+    body {
+        margin: 0;
+        font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+        background: #f4f6fb;
+        color: #0f172a;
+        line-height: 1.6;
+    }
+    main {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 32px 16px 64px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 2rem;
+    }
+    section {
+        background: #fff;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 16px 40px rgba(15,23,42,0.12);
+    }
+    h2 { font-size: 1.3rem; margin-bottom: 12px; }
+    h3 { font-size: 1.05rem; margin: 18px 0 8px; }
+    ul, ol { padding-left: 20px; margin: 8px 0; }
+    .grid { display: grid; gap: 14px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 16px;
+        background: #f9fbff;
+    }
+    .table-wrap { overflow-x: auto; }
+    table {
+        width: 100%;
+        min-width: 640px;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    th, td {
+        border: 1px solid #dbe2f3;
+        padding: 10px 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th { background: #e8efff; font-weight: 600; }
+    label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+    }
+    select, button {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #94a3b8;
+        font-family: inherit;
+        font-size: 1rem;
+        background: #fff;
+    }
+    button {
+        border: none;
+        background: #0ea5e9;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    button:hover { background: #0284c7; }
+    .info-box {
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 14px;
+        background: #eef2ff;
+        color: #312e81;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        background: #e0f2fe;
+        color: #0f172a;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    @media (max-width: 640px) {
+        section { padding: 20px; }
+        table { font-size: 0.95rem; }
+    }
+</style>
+</head>
+<body>
+<main>
+    <h1>第二課 電腦硬件</h1>
+
+    <section id="case">
+        <h2>2.1 主機與核心部件</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>主機板 (Motherboard)</h3>
+                <ul>
+                    <li>載有插槽、連接埠與匯流排，連接 CPU、RAM、儲存與周邊。</li>
+                    <li>USB、PCIe、SATA 等介面統一在主機板上。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>處理器 (CPU / GPU)</h3>
+                <ul>
+                    <li>CPU：擅長繁複指令、通用處理。</li>
+                    <li>GPU：核心數多，擅長並行簡單運算，圖像與 AI 訓練常用。</li>
+                    <li>iGPU：GPU 整合在 CPU/晶片組內，無需獨立顯示卡。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>圖形卡 (顯示卡)</h3>
+                <ul>
+                    <li>包含 GPU、專用顯示 RAM、數碼模擬轉換器。</li>
+                    <li>專為圖像輸出設計，可連接顯示器/投影機。</li>
+                    <li>🚨顯示卡不等於GPU</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>主記憶體與輔助儲存</h3>
+                <ul>
+                    <li>RAM（易失性）暫存處理數據；ROM（非易失性）儲 BIOS。</li>
+                    <li>硬碟 / SSD / 光碟等屬輔助儲存，電源關閉後仍保留數據。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>電源供應器 (PSU)</h3>
+                <ul>
+                    <li>將 AC 轉為各部件需要的 DC 電壓。</li>
+                    <li>功率需符合整體硬件需求。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>匯流排 (Bus)</h3>
+                <ul>
+                    <li>系統匯流排：含位址、數據、控制匯流排。</li>
+                    <li>USB：連接外部設備，1.0/2.0/3.0 可由插頭顏色分辨。</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>互動：選擇部件查看重點</h3>
+        <label for="componentSelect">部件類型</label>
+        <select id="componentSelect">
+            <option value="ram">RAM</option>
+            <option value="rom">ROM</option>
+            <option value="gpu">GPU vs iGPU</option>
+            <option value="psu">電源供應器</option>
+            <option value="bus">匯流排</option>
+        </select>
+        <div id="componentInfo" class="info-box"></div>
+    </section>
+
+    <section id="cpu">
+        <h2>2.2 中央處理器 (CPU)</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>主要部件</h3>
+                <ul>
+                    <li>CU（控制部件）：協調指令、管理資料流。</li>
+                    <li>ALU（算術邏輯單元）：執行 + − × ÷ 及邏輯比較、AND/OR/NOT。</li>
+                    <li>寄存器：CPU 內高速暫存區，如 PC、MAR、MDR、CIR、累加器。</li>
+                    <li>快取記憶體：比 RAM 更快，預先儲常用指令/數據。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>機器周期（馮紐曼架構）</h3>
+                <ol>
+                    <li>提取 (Fetch)：PC 指向下一指令位址 → 送往 MAR/MDR。</li>
+                    <li>譯碼 (Decode)：CU 解析指令。</li>
+                    <li>執行 (Execute)：ALU 或其他單元進行操作。</li>
+                    <li>儲存 (Store)：結果寫回寄存器或記憶體。</li>
+                </ol>
+            </div>
+            <div class="card">
+                <h3>規格對表現的影響</h3>
+                <ul>
+                    <li>時鐘頻率（GHz）：每秒時計畫週期數，越高越快亦較耗電。</li>
+                    <li>核心數：多核心提升多工作業能力。</li>
+                    <li>字長（32/64 bit）：每次處理位元數，影響定址能力與速度。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="memory">
+        <h2>2.3 主記憶體與輔助儲存</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>RAM</h3>
+                <ul>
+                    <li>易失性；電腦關機後數據消失。</li>
+                    <li>存取速度遠高於輔助儲存設備。</li>
+                    <li>容量與速度直接左右 CPU 表現。</li>
+                    <li>版本：DDR3/DDR4/DDR5，插槽不兼容。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>ROM</h3>
+                <ul>
+                    <li>非易失性，只讀或極少改寫。</li>
+                    <li>儲存 BIOS / 韌體，負責啟動程序。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>輔助儲存分類</h3>
+                <ul>
+                    <li>磁儲存：硬碟、磁帶。</li>
+                    <li>固態儲存：SSD、USB、記憶卡（使用快閃記憶體）。</li>
+                    <li>光儲存：CD/DVD/Blu-ray。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>存取方式</h3>
+                <ul>
+                    <li>順序存取：磁帶，只能依次讀寫。</li>
+                    <li>直接存取：硬碟、SSD、USB，可隨機定位。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>其他技術</h3>
+                <ul>
+                    <li>RAID：多儲存組合提升速度與冗餘。</li>
+                    <li>NAS：LAN 共享儲存，常結合 RAID。</li>
+                    <li>雲端儲存：ISP 提供，需網絡連線。</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>記憶體階層概念</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>階層</th>
+                        <th>例子</th>
+                        <th>速度</th>
+                        <th>容量</th>
+                        <th>用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>最快</td>
+                        <td>寄存器</td>
+                        <td>極高</td>
+                        <td>極小</td>
+                        <td>暫存即時指令 / 算術結果</td>
+                    </tr>
+                    <tr>
+                        <td>高</td>
+                        <td>CPU 快取</td>
+                        <td>高</td>
+                        <td>小</td>
+                        <td>預存常用數據</td>
+                    </tr>
+                    <tr>
+                        <td>中</td>
+                        <td>RAM</td>
+                        <td>中</td>
+                        <td>中</td>
+                        <td>暫存執行中程式資料</td>
+                    </tr>
+                    <tr>
+                        <td>較低</td>
+                        <td>SSD / HDD</td>
+                        <td>較低</td>
+                        <td>大</td>
+                        <td>長期儲存</td>
+                    </tr>
+                    <tr>
+                        <td>最低</td>
+                        <td>磁帶 / 雲端備份</td>
+                        <td>低</td>
+                        <td>極大</td>
+                        <td>備份、歸檔</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="storageTool">
+        <h2>互動：選擇情境建議儲存方案</h2>
+        <label for="storageScenario">使用情境</label>
+        <select id="storageScenario">
+            <option value="work">攜帶 12 GB 檔案並常更新</option>
+            <option value="backup">定期備份大量資料</option>
+            <option value="gaming">高階電競電腦</option>
+            <option value="library">圖書館自助借書機</option>
+        </select>
+        <div id="storageAdvice" class="info-box"></div>
+    </section>
+
+    <section id="types">
+        <h2>2.4 電腦種類與應用</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>桌上電腦</h3>
+                <ul>
+                    <li>運算力強、擴充性高。</li>
+                    <li>適合圖像設計、遊戲、伺服器。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>手提電腦</h3>
+                <ul>
+                    <li>便於攜帶，性能中度。</li>
+                    <li>電池供電，整合顯示器與鍵盤。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>平板 / 智能電話</h3>
+                <ul>
+                    <li>重量輕、觸控操作。</li>
+                    <li>運算較低但耗電少，適合流動多媒體。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>伺服器 / 超級電腦</h3>
+                <ul>
+                    <li>伺服器：連線多用戶、資料共享。</li>
+                    <li>超級電腦：極強並行運算，如科學模擬。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="trends">
+        <h2>2.5 硬件最新發展趨勢</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>CPU / GPU</h3>
+                <ul>
+                    <li>更多核心、更高時鐘頻率。</li>
+                    <li>AI 加速器、GPU 成為深度學習核心。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>儲存</h3>
+                <ul>
+                    <li>SSD 逐漸取代 HDD 作系統碟，速度快、耐震、耗電低。</li>
+                    <li>快閃記憶體密度持續提升。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>行動裝置</h3>
+                <ul>
+                    <li>螢幕解像度、刷新率提高。</li>
+                    <li>運算能力增強、AI 相機功能普及。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>物聯網 / 感應器</h3>
+                <ul>
+                    <li>更多裝置內建感測與無線模組。</li>
+                    <li>感測數據結合雲端與 AI 分析。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+const componentNotes = {
+    ram: "RAM 為易失性，提供高速暫存。容量越大、頻寬越高，越能支援多工作業與大型應用。",
+    rom: "ROM 儲存 BIOS / 韌體，非易失性，通常不可改寫，用於啟動電腦或設備。",
+    gpu: "獨立顯示卡具有專屬顯示 RAM 與更強圖形處理；iGPU 則整合於 CPU/晶片組，節省成本與能耗。",
+    psu: "電源供應器把交流電轉為不同直流電壓（+12V、+5V 等），功率須匹配硬件需求並留有餘量。",
+    bus: "匯流排負責傳送數據、位址與控制訊號。SATA 連接 HDD/SSD，PCIe 連接顯示卡等高速裝置，USB 連接周邊。"
+};
+const componentSelect = document.getElementById("componentSelect");
+const componentInfo = document.getElementById("componentInfo");
+function updateComponentInfo() {
+    componentInfo.textContent = componentNotes[componentSelect.value];
+}
+componentSelect.addEventListener("change", updateComponentInfo);
+updateComponentInfo();
+
+const storageTips = {
+    work: "建議使用 USB 快閃記憶體：容量可超過 12 GB、可重寫、隨身攜帶方便，且無需額外驅動。",
+    backup: "選用磁帶或雲端備份：磁帶容量大、成本低適合長期備份；亦可結合雲端以異地備援。",
+    gaming: "配置 SSD（作系統與遊戲）＋大容量 HDD：SSD 加快載入速度，HDD 儲存大量遊戲資料。",
+    library: "自助借書機組合：感應器＋條碼或 RFID 閱讀器，配合網絡連線及感熱式/激光打印機輸出收據。"
+};
+const storageScenario = document.getElementById("storageScenario");
+const storageAdvice = document.getElementById("storageAdvice");
+function updateStorageAdvice() {
+    storageAdvice.textContent = storageTips[storageScenario.value];
+}
+storageScenario.addEventListener("change", updateStorageAdvice);
+updateStorageAdvice();
+</script>
+</body>
+</html>

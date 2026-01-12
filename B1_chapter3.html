@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>第三課 電腦軟件</title>
+<style>
+    :root { color-scheme: light; }
+    body {
+        margin: 0;
+        font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+        background: #f4f6fb;
+        color: #0f172a;
+        line-height: 1.6;
+    }
+    main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 16px 80px;
+    }
+    h1, h2, h3 { margin: 0; }
+    header {
+        text-align: center;
+        padding: 24px 16px 24px;
+    }
+    header h1 { font-size: 2.2rem; margin-bottom: 12px; }
+    header p { max-width: 640px; margin: 0 auto; }
+    section {
+        background: #fff;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 20px;
+        box-shadow: 0 16px 36px rgba(15,23,42,0.12);
+    }
+    h2 {
+        font-size: 1.35rem;
+        margin-bottom: 14px;
+        color: #0f172a;
+    }
+    h3 {
+        font-size: 1.05rem;
+        margin: 18px 0 8px;
+        color: #0f172a;
+    }
+    ul, ol { padding-left: 20px; margin: 6px 0 12px; }
+    .grid { display: grid; gap: 14px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 16px;
+        background: #f9fbff;
+    }
+    .diagram {
+        width: 88px;
+        margin-bottom: 10px;
+    }
+    .diagram svg { width: 100%; height: auto; display: block; }
+    .table-wrap { overflow-x: auto; margin-top: 12px; }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+    }
+    th, td {
+        border: 1px solid #dbe2f3;
+        padding: 10px 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th { background: #e8efff; font-weight: 600; }
+    label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+    }
+    select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #94a3b8;
+        font-size: 1rem;
+        font-family: inherit;
+    }
+    .info-box {
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 14px;
+        background: #eef2ff;
+        color: #312e81;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: #e0f2fe;
+        color: #0f172a;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+    。chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .chip {
+        flex: 1 1 220px;
+        background: #f8fafc;
+        border: 1px solid #cbd5f5;
+        border-radius: 12px;
+        padding: 12px;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+    .chip:hover { transform: translateY(-2px); border-color: #0ea5e9; }
+    .chip h4 { margin: 0 0 6px; font-size: 1rem; color: #0f172a; }
+    footer {
+        text-align: center;
+        padding: 24px 12px;
+        color: #475569;
+        font-size: 0.9rem;
+    }
+    @media (max-width: 640px) {
+        section { padding: 20px; }
+        table { font-size: 0.93rem; }
+    }
+</style>
+</head>
+<body>
+<main>
+    <header>
+        <h1>第三課 電腦軟件</h1>
+    </header>
+
+    <section id="system">
+        <h2>3.1 電腦系統概念</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="diagram">
+                    <svg viewBox="0 0 120 80">
+                        <rect x="10" y="15" width="45" height="50" rx="6" fill="#bfdbfe"/>
+                        <rect x="65" y="25" width="45" height="30" rx="6" fill="#fcd34d"/>
+                        <circle cx="32" cy="40" r="10" fill="#1d4ed8"/>
+                        <circle cx="87" cy="40" r="8" fill="#d97706"/>
+                    </svg>
+                </div>
+                <h3>硬件 vs 軟件</h3>
+                <ul>
+                    <li>硬件：電腦的實體部件。</li>
+                    <li>軟件：數據與指令，協助硬件完成任務。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="diagram">
+                    <svg viewBox="0 0 120 80">
+                        <rect x="10" y="25" width="30" height="30" rx="6" fill="#38bdf8"/>
+                        <rect x="45" y="20" width="30" height="40" rx="6" fill="#34d399"/>
+                        <rect x="80" y="25" width="30" height="30" rx="6" fill="#f87171"/>
+                        <line x1="40" y1="40" x2="45" y2="40" stroke="#0f172a" stroke-width="3"/>
+                        <line x1="75" y1="40" x2="80" y2="40" stroke="#0f172a" stroke-width="3"/>
+                    </svg>
+                </div>
+                <h3>關係</h3>
+                <p>硬件提供資源 → 系統軟件管理資源 → 應用軟件與用戶互動完成任務。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sys-soft">
+        <h2>3.2 系統軟件</h2>
+
+        <div class="badge">操作系統（OS）</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>核心功能</h3>
+                <ul>
+                    <li>處理程序管理、記憶體管理</li>
+                    <li>檔案系統、周邊設備管理</li>
+                    <li>用戶界面、系統安全</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>分類重點</h3>
+                <ul>
+                    <li>用戶數目：單用戶 / 多用戶</li>
+                    <li>用途：桌面、伺服器、嵌入式</li>
+                    <li>界面：GUI / CLI</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>常見操作系統</h3>
+        <div class="chip-row">
+            <div class="chip" onclick="showOs('Windows：桌面OS，GUI 友善，常用於個人電腦。')">
+                <h4>Windows</h4>
+                <p>桌面 / 伺服器版本</p>
+            </div>
+            <div class="chip" onclick="showOs('Linux：開放源碼，支援 GUI 與 CLI，常見於伺服器。')">
+                <h4>Linux</h4>
+                <p>多用戶 / 伺服器</p>
+            </div>
+            <div class="chip" onclick="showOs('macOS：蘋果桌面OS，GUI，整合硬件。')">
+                <h4>macOS</h4>
+                <p>桌面 / 創作</p>
+            </div>
+            <div class="chip" onclick="showOs('iOS / Android：流動裝置OS，觸控GUI。')">
+                <h4>iOS / Android</h4>
+                <p>流動裝置</p>
+            </div>
+        </div>
+        <div id="osInfo" class="info-box">點擊上方卡片查看提示。</div>
+
+        <div class="badge" style="margin-top:18px;">實用程式（Utility）</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>常見例子</h3>
+                <ul>
+                    <li>防毒 / 防間諜程式</li>
+                    <li>磁碟清理、磁碟重組</li>
+                    <li>備份、壓縮、系統監察</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>點擊查看功能</h3>
+                <div class="chip-row">
+                    <div class="chip" onclick="showUtility('防毒軟件：偵測並移除惡意程式。')">
+                        <h4>防毒</h4>
+                        <p>安全維護</p>
+                    </div>
+                    <div class="chip" onclick="showUtility('磁碟重組：整理碎片以加快存取速度。')">
+                        <h4>磁碟重組</h4>
+                        <p>效能提升</p>
+                    </div>
+                    <div class="chip" onclick="showUtility('備份工具：定期保存重要檔案，預防損失。')">
+                        <h4>備份</h4>
+                        <p>資料保護</p>
+                    </div>
+                </div>
+                <div id="utilityInfo" class="info-box">選擇上方項目查看功能說明。</div>
+            </div>
+        </div>
+
+        <div class="badge" style="margin-top:18px;">驅動程式（Driver）</div>
+        <div class="card">
+            <p>驅動程式將應用或 OS 的請求翻譯為硬件可理解的指令。每個驅動程式針對特定 OS + 周邊設備組合，以確保裝置（如打印機、掃描器、顯示卡）能被系統控制。</p>
+        </div>
+    </section>
+
+    <section id="app-soft">
+        <h2>3.3 應用軟件</h2>
+        <p>應用軟件是為了完成特定工作而設計的程式，常見分類如下：</p>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>生產力軟件（Productivity）</h3>
+                <p><strong>定義：</strong>提升工作效率，用來產生、分析或展示資訊。</p>
+                <ul>
+                    <li>用途：文件處理、數據分析、簡報設計</li>
+                    <li>例子：Word、Excel、PowerPoint</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>通訊軟件（Communication）</h3>
+                <p><strong>定義：</strong>經網絡在用戶之間交換資訊，支援協作和溝通。</p>
+                <ul>
+                    <li>用途：即時通訊、視像會議、電郵</li>
+                    <li>例子：Teams、Zoom、WhatsApp</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>媒體開發軟件（Media Development）</h3>
+                <p><strong>定義：</strong>建立或編輯多媒體檔案的工具。</p>
+                <ul>
+                    <li>用途：影像處理、音樂製作、影片剪輯</li>
+                    <li>例子：Photoshop、Premiere、GarageBand</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>教育軟件（Education）</h3>
+                <p><strong>定義：</strong>用於獲取知識、提升學習效能或協助教師授課。</p>
+                <ul>
+                    <li>用途：自學平台、互動練習、評估系統</li>
+                    <li>例子：Moodle、Kahoot!、Learning Apps</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>互動：選擇軟件查看用途</h3>
+        <label for="appSelect">軟件類別</label>
+        <select id="appSelect">
+            <option value="productivity">生產力軟件</option>
+            <option value="communication">通訊軟件</option>
+            <option value="media">媒體開發軟件</option>
+            <option value="education">教育軟件</option>
+        </select>
+        <div id="appInfo" class="info-box"></div>
+    </section>
+
+    <section id="modes">
+        <h2>3.4 運作方式</h2>
+        <p>不同運作方式按「何時處理」與「如何處理」劃分：</p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>方式</th>
+                        <th>處理時間</th>
+                        <th>硬件 / 網絡需求</th>
+                        <th>常見應用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>成批工件處理</td>
+                        <td>累積一批後按排程處理</td>
+                        <td>標準伺服器，無需即時回應</td>
+                        <td>薪金發放、代繳帳單</td>
+                    </tr>
+                    <tr>
+                        <td>實時處理</td>
+                        <td>即時回應輸入</td>
+                        <td>高運算力、足夠 RAM</td>
+                        <td>網上購票、交通控制</td>
+                    </tr>
+                    <tr>
+                        <td>並行式處理</td>
+                        <td>分配至多個處理器同時進行</td>
+                        <td>多核 / 多處理器共用記憶體</td>
+                        <td>科學計算、圖像渲染</td>
+                    </tr>
+                    <tr>
+                        <td>分布式處理</td>
+                        <td>多部電腦透過網絡協同</td>
+                        <td>高速網絡、管理節點</td>
+                        <td>雲端平台、大型資料庫</td>
+                    </tr>
+                    <tr>
+                        <td>虛擬化</td>
+                        <td>實體硬件分割成多個虛擬機</td>
+                        <td>虛擬化實用程式、足夠資源</td>
+                        <td>同機多 OS、測試隔離環境</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>情境選擇器</h3>
+        <label for="scenarioSelect">選擇情境</label>
+        <select id="scenarioSelect">
+            <option value="ticket">影院網上購票系統</option>
+            <option value="payroll">公司每月發薪</option>
+            <option value="ai">AI 訓練 / 科學模擬</option>
+            <option value="cloud">跨地點協作的雲端平台</option>
+            <option value="vm">在 PC 上玩手機遊戲</option>
+        </select>
+        <div id="scenarioInfo" class="info-box"></div>
+    </section>
+</main>
+
+<script>
+const osInfo = document.getElementById("osInfo");
+function showOs(text) {
+    osInfo.textContent = text;
+}
+
+const utilityInfo = document.getElementById("utilityInfo");
+function showUtility(text) {
+    utilityInfo.textContent = text;
+}
+
+const appNotes = {
+    productivity: "生產力軟件的目的為提升工作生產力。軟件可用作產生、分析或展示資訊。",
+    communication: "通訊軟件經由網絡於用戶之間交換資訊，方便用戶溝通。",
+    media: "媒體開發軟件用作建立或編輯多媒體檔案。",
+    education: "教育軟件用作獲取知識、增加學習效能或輔助教育工作者教導學生。"
+};
+const appSelect = document.getElementById("appSelect");
+const appInfo = document.getElementById("appInfo");
+function updateAppInfo() {
+    appInfo.textContent = appNotes[appSelect.value];
+}
+appSelect.addEventListener("change", updateAppInfo);
+updateAppInfo();
+
+const scenarioNotes = {
+    ticket: "建議：實時處理。座位狀況須即時更新，避免多人同時購買同一座位。",
+    payroll: "建議：成批工件處理。每月累積資料後一次過計算薪金，善用閒置資源。",
+    ai: "建議：並行式處理。將運算分拆給多個處理器/GPU，加速模型訓練或模擬。",
+    cloud: "建議：分布式處理。多部電腦透過網絡協同，提升可擴充性與可靠度。",
+    vm: "建議：虛擬化。使用虛擬機器實用程式建立流動裝置 OS，於 PC 內執行手機遊戲。"
+};
+const scenarioSelect = document.getElementById("scenarioSelect");
+const scenarioInfo = document.getElementById("scenarioInfo");
+function updateScenarioInfo() {
+    scenarioInfo.textContent = scenarioNotes[scenarioSelect.value];
+}
+scenarioSelect.addEventListener("change", updateScenarioInfo);
+updateScenarioInfo();
+</script>
+</body>
+</html>

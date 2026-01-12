@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>第一課 建網及互聯網基本知識</title>
+<style>
+    :root { color-scheme: light; }
+    body {
+        margin: 0;
+        font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+        background: #f4f6fb;
+        color: #0f172a;
+        line-height: 1.6;
+    }
+    main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 16px 80px;
+    }
+    header {
+        text-align: center;
+        padding: 24px 16px 30px;
+    }
+    header h1 {
+        font-size: 2.1rem;
+        margin-bottom: 12px;
+    }
+    header p {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    section {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 22px;
+        box-shadow: 0 16px 38px rgba(15,23,42,0.12);
+    }
+    h2 {
+        margin: 0 0 14px;
+        font-size: 1.35rem;
+        color: #0f172a;
+    }
+    h3 {
+        margin: 18px 0 8px;
+        font-size: 1.05rem;
+        color: #0f172a;
+    }
+    ul, ol {
+        padding-left: 20px;
+        margin: 6px 0 12px;
+    }
+    .grid {
+        display: grid;
+        gap: 14px;
+    }
+    .grid-2 {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 16px;
+        background: #f9fbff;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: #e0f2fe;
+        color: #0f172a;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+    .table-wrap {
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+    }
+    th, td {
+        border: 1px solid #dbe2f3;
+        padding: 10px 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        background: #e8efff;
+        font-weight: 600;
+    }
+    label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+    }
+    select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #94a3b8;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+    .info-box {
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 14px;
+        background: #eef2ff;
+        color: #312e81;
+    }
+    .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .chip {
+        flex: 1 1 200px;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid #cbd5f5;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+    .chip:hover {
+        transform: translateY(-2px);
+        border-color: #0ea5e9;
+    }
+    .chip h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+        color: #0f172a;
+    }
+    @media (max-width: 640px) {
+        section { padding: 20px; }
+        table { font-size: 0.93rem; }
+    }
+</style>
+</head>
+<body>
+<main>
+    <header>
+        <h1>第一課 建網及互聯網基本知識</h1>
+    </header>
+
+    <section id="concept">
+        <h2>1.1 電腦網絡概念</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>電腦網絡定義</h3>
+                <p>由眾多電腦與周邊設備交織而成，彼此互通資訊並共用硬件及軟件資源，不受地域局限。</p>
+            </div>
+            <div class="card">
+                <h3>資源共享例子</h3>
+                <ul>
+                    <li>共用打印機、掃描器等硬件。</li>
+                    <li>共用檔案伺服器上的資料夾與軟件。</li>
+                    <li>透過互聯網連接外部服務。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="lan-wan">
+        <h2>1.1 局部區域網絡（LAN）與寬廣區域網絡（WAN）</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>LAN 定義</h3>
+                <p>覆蓋家庭、辦公室或學校等較小地理面積的網絡，裝置可直接連接形成。</p>
+            </div>
+            <div class="card">
+                <h3>WAN 定義</h3>
+                <p>由許多 LAN 組成，覆蓋市鎮或國家等大片範圍；裝置通常經互聯網服務供應商連接。</p>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>比較項目</th>
+                        <th>LAN</th>
+                        <th>WAN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>覆蓋範圍</td>
+                        <td>小型地區（家庭 / 辦公室）</td>
+                        <td>跨市鎮或國家，由多個 LAN 組成</td>
+                    </tr>
+                    <tr>
+                        <td>傳輸速率</td>
+                        <td>一般較高</td>
+                        <td>視 ISP 連接而定，通常較低</td>
+                    </tr>
+                    <tr>
+                        <td>設置成本</td>
+                        <td>較低</td>
+                        <td>較高（需 ISP 及廣域設備）</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="topology">
+        <h2>1.2 客戶機－伺服器與對等網絡</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>客戶機－伺服器網絡</h3>
+                <p>有集中化管理的伺服器儲存資源並分享給客戶裝置。管理員控制存取與共享權限。</p>
+                <ul>
+                    <li>伺服器為其他裝置提供服務。</li>
+                    <li>客戶向伺服器請求網絡服務。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>常見伺服器類型</h3>
+                <ul>
+                    <li>檔案伺服器、打印伺服器</li>
+                    <li>網站伺服器、電郵伺服器</li>
+                    <li>資料庫伺服器等</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>對等（P2P）網絡</h3>
+                <p>無需集中化管理即可共享資源，所有用戶自行分享檔案。點對點檔案分享（如 BitTorrent）即為應用。</p>
+            </div>
+        </div>
+        <h3>利與弊比較</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>客戶機－伺服器</th>
+                        <th>對等網絡</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>資源管理</td>
+                        <td>集中化，易於控制</td>
+                        <td>分散，依賴各用戶</td>
+                    </tr>
+                    <tr>
+                        <td>擴充性</td>
+                        <td>適合大型網絡</td>
+                        <td>適合小型分享</td>
+                    </tr>
+                    <tr>
+                        <td>示例</td>
+                        <td>網上銀行、網站瀏覽</td>
+                        <td>BT 檔案分享</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>1.3 網絡服務與資源共享</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>通訊服務</h3>
+                <ul>
+                    <li>效率：坐在單一電腦即可通訊。</li>
+                    <li>便利：只要連上網絡即可溝通。</li>
+                    <li>私隱：訊息只傳給預期接收者。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>視像會議</h3>
+                <p>提供音訊及視像即時通訊；品質取決於數據傳輸速率（頻寬）與設備質素。</p>
+            </div>
+            <div class="card">
+                <h3>檔案 / 打印共享</h3>
+                <p>集中伺服器可保持多裝置資料一致、節省本地儲存、提升備份效率、同步多人協作。</p>
+            </div>
+            <div class="card">
+                <h3>共享軟件與互聯網連接</h3>
+                <p>部分軟件可於伺服器共享給所有用戶；LAN 亦可共享互聯網連接以監測及控制流量，保護內部裝置。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="hardware">
+        <h2>1.4 網絡硬件與傳輸媒體</h2>
+
+        <div class="badge">網絡界面卡（NIC）</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <p>安裝於裝置的電路板，用於連接網絡。以太網 NIC 具 RJ-45 插槽；無線 NIC 具天線。</p>
+                <p>每張 NIC 內建 48 位元 MAC 位址（實體位址），由製造商分配以識別裝置。</p>
+            </div>
+        </div>
+
+        <div class="badge" style="margin-top:16px;">網絡連接裝置</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>交換器</h3>
+                <p>連接裝置形成 LAN，依裝置 MAC 位址將數據轉送，內建緩衝避免衝突。</p>
+            </div>
+            <div class="card">
+                <h3>網絡接達點（AP）及 Wi-Fi 漫遊</h3>
+                <p>AP 連接有線 LAN 並提供 Wi-Fi；以 SSID 辨識，若啟用加密需輸入密碼。多個 AP 可共用 SSID，裝置移動時會自動切換，稱為 Wi-Fi 漫遊。</p>
+            </div>
+            <div class="card">
+                <h3>路由器與家用路由器</h3>
+                <p>路由器連接多個 LAN 或 LAN 與 WAN，依 IP 位址轉發數據。家用路由器整合交換器、AP、DNS、防火牆等功能，方便設置。</p>
+            </div>
+            <div class="card">
+                <h3>數據機（Modem）</h3>
+                <p>由 ISP 提供，於電腦與互聯網之間轉換模擬／數碼信號。DSL 數據機使用電話線寬頻，分為下載較快的 ADSL（住宅）與上下游平衡的對稱 DSL（企業）。光纖數據機（ONT）則轉換光信號。</p>
+            </div>
+        </div>
+
+        <div class="badge" style="margin-top:16px;">有線傳輸媒體</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>雙扭線電纜（UTP/STP）</h3>
+                <p>多對雙扭銅線，末端為 RJ-45。最大傳輸距離約 100 米。UTP 以雙扭減少 EMI；STP 另加金屬遮罩以進一步阻隔干擾。</p>
+            </div>
+            <div class="card">
+                <h3>光纖電纜</h3>
+                <p>由光纖組成，利用全內反射以光束傳輸數據，適合長距離、高速傳輸。</p>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>媒體</th>
+                        <th>優點</th>
+                        <th>缺點</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>UTP</td>
+                        <td>成本較低、易安裝</td>
+                        <td>抗 EMI 能力較低</td>
+                    </tr>
+                    <tr>
+                        <td>STP</td>
+                        <td>電磁干擾更低、較穩定</td>
+                        <td>較昂貴</td>
+                    </tr>
+                    <tr>
+                        <td>光纖</td>
+                        <td>傳輸距離長、速率高、抗干擾</td>
+                        <td>成本高、安裝較複雜</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="badge" style="margin-top:16px;">無線傳輸媒體</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>衛星 & WiMAX</h3>
+                <p>衛星可覆蓋偏遠地區；WiMAX 使用微波建立無線連接。</p>
+            </div>
+            <div class="card">
+                <h3>Wi-Fi（IEEE 802.11）</h3>
+                <p>利用射頻電波傳輸數據，厚牆等障礙會削弱覆蓋。提供無線局部區域網絡（WLAN）。</p>
+            </div>
+            <div class="card">
+                <h3>藍牙</h3>
+                <p>短程無線技術，常用於行動裝置間；覆蓋距離與速率均低於 Wi-Fi，但耗電低並支援對等連接。</p>
+            </div>
+        </div>
+
+        <h3>有線 vs 無線比較</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>有線網絡</th>
+                        <th>無線網絡</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>連線穩定度</td>
+                        <td>干擾少、穩定</td>
+                        <td>易受障礙與干擾影響</td>
+                    </tr>
+                    <tr>
+                        <td>靈活性</td>
+                        <td>移動性低</td>
+                        <td>提升裝置流動性</td>
+                    </tr>
+                    <tr>
+                        <td>安全性</td>
+                        <td>實體線路，較易控制</td>
+                        <td>需加密與認證確保安全</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="access">
+        <h2>1.5 互聯網接達方法</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>互聯網服務供應商（ISP）</h3>
+                <p>提供互聯網接達服務，為使用者提供通訊閘連接至互聯網。</p>
+            </div>
+            <div class="card">
+                <h3>寬頻連接</h3>
+                <p>高傳輸速率，具寬頻寬可同時傳多個信號；按使用電纜種類（如 DSL、纜線、光纖）分類。</p>
+            </div>
+            <div class="card">
+                <h3>專線</h3>
+                <p>連接通訊點的私人網絡，專用通道直接連網且不共享基礎設施，安全與穩定性較高。</p>
+            </div>
+            <div class="card">
+                <h3>流動數據（3G/4G）</h3>
+                <p>行動裝置利用蜂窩式技術連線，4G 傳輸速率高於 3G。</p>
+            </div>
+            <div class="card">
+                <h3>Wi-Fi 熱點</h3>
+                <p>透過行動裝置連接到熱點以獲取無線網絡。例如 Wi-Fi.HK 提供逾 36,000 個免費、不須註冊的熱點。</p>
+            </div>
+        </div>
+
+        <h3>常見互聯網連接比較</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>特色</th>
+                        <th>適用情境</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>寬頻</td>
+                        <td>高速有線連接、頻寬大</td>
+                        <td>家居 / 辦公室固定線路</td>
+                    </tr>
+                    <tr>
+                        <td>專線</td>
+                        <td>專用通道、不共享、較安全</td>
+                        <td>企業需要穩定及安全連線</td>
+                    </tr>
+                    <tr>
+                        <td>流動數據</td>
+                        <td>依蜂窩網絡，行動裝置可隨地連線</td>
+                        <td>戶外、移動使用</td>
+                    </tr>
+                    <tr>
+                        <td>Wi-Fi 熱點</td>
+                        <td>公共或私人大樓提供，裝置透過 Wi-Fi 連線</td>
+                        <td>城市公共區域、咖啡店等</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>互動：選擇連接情境</h3>
+        <label for="accessSelect">情境</label>
+        <select id="accessSelect">
+            <option value="home">家庭需要穩定高速上網</option>
+            <option value="office">企業需要專屬安全連線</option>
+            <option value="outdoor">戶外用手機上網</option>
+            <option value="public">在市區隨時連 Wi-Fi</option>
+        </select>
+        <div id="accessInfo" class="info-box"></div>
+    </section>
+</main>
+
+<script>
+const accessNotes = {
+    home: "建議：寬頻（如光纖或 DSL）。具高頻寬，適合多裝置同時使用。",
+    office: "建議：專線。提供專用通道、不共享基礎設施，安全與穩定性較高。",
+    outdoor: "建議：流動數據（3G/4G）。行動裝置可透過蜂窩網絡隨地連線。",
+    public: "建議：Wi-Fi 熱點（如 Wi-Fi.HK）。在公共場所免費連線，但需注意安全設定。"
+};
+const accessSelect = document.getElementById("accessSelect");
+const accessInfo = document.getElementById("accessInfo");
+function updateAccessInfo() {
+    accessInfo.textContent = accessNotes[accessSelect.value];
+}
+accessSelect.addEventListener("change", updateAccessInfo);
+updateAccessInfo();
+</script>
+</body>
+</html>

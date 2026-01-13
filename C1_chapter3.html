@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>第三課 互聯網服務及應用</title>
+<style>
+    :root { color-scheme: light; }
+    body {
+        margin: 0;
+        font-family: "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+        background: #f4f6fb;
+        color: #0f172a;
+        line-height: 1.6;
+    }
+    main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 16px 80px;
+    }
+    header {
+        text-align: center;
+        padding: 24px 16px 30px;
+    }
+    header h1 {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+    }
+    header p {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+    section {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 22px;
+        box-shadow: 0 16px 38px rgba(15,23,42,0.12);
+    }
+    h2 {
+        margin: 0 0 14px;
+        font-size: 1.35rem;
+        color: #0f172a;
+    }
+    h3 {
+        margin: 18px 0 8px;
+        font-size: 1.05rem;
+        color: #0f172a;
+    }
+    ul, ol {
+        padding-left: 20px;
+        margin: 6px 0 12px;
+    }
+    .grid {
+        display: grid;
+        gap: 14px;
+    }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card {
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 16px;
+        background: #f9fbff;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: #e0f2fe;
+        color: #0f172a;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+    .table-wrap {
+        overflow-x: auto;
+        margin-top: 12px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+    }
+    th, td {
+        border: 1px solid #dbe2f3;
+        padding: 10px 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+    th { background: #e8efff; font-weight: 600; }
+    label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+    }
+    select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #94a3b8;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+    .info-box {
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 14px;
+        background: #eef2ff;
+        color: #312e81;
+    }
+    .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .chip {
+        flex: 1 1 200px;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid #cbd5f5;
+        background: #f8fafc;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+    .chip:hover {
+        transform: translateY(-2px);
+        border-color: #0ea5e9;
+    }
+    .chip h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+        color: #0f172a;
+    }
+    .img-wrap {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 12px;
+    }
+    .img-wrap img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+    }
+    。email-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .email-form div {
+        border: 1px solid #cbd5f5;
+        border-radius: 10px;
+        padding: 12px;
+        background: #f8fafc;
+    }
+    .transfer-list li { margin-bottom: 6px; }
+    .checklist label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+    . slider-wrap {
+        margin-top: 12px;
+    }
+    input[type="range"] {
+        width: 100%;
+    }
+    @media (max-width: 640px) {
+        section { padding: 20px; }
+        table { font-size: 0.93rem; }
+    }
+</style>
+</head>
+<body>
+<main>
+    <header>
+        <h1>第三課 互聯網服務及應用</h1>
+    </header>
+
+    <!-- 區段一：互聯網應用 -->
+    <section id="iot">
+        <h2>3.1 互聯網的應用</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>生活便利</h3>
+                <p>互聯網讓我們按下一個按鍵即可獲取資訊並與世界各地共享所知，令生活更加便利。</p>
+            </div>
+            <div class="card">
+                <h3>物聯網（IoT）</h3>
+                <p>連接家用電器、電子裝置、可穿戴裝置、車輛等物件的網絡，產生大量數據。</p>
+            </div>
+        </div>
+
+        <div class="badge" style="margin-top:16px;">物聯網 × 雲端 × 智慧城市</div>
+        <div class="chip-row">
+            <div class="chip" onclick="showIoT('cloud')">
+                <h4>雲端運算</h4>
+                <p>即時儲存、處理 IoT 數據，支援協作工具。</p>
+            </div>
+            <div class="chip" onclick="showIoT('smartcity')">
+                <h4>智慧城市</h4>
+                <p>利用 IoT + 雲端解決環境、交通、廢物管理、人口老化等。</p>
+            </div>
+            <div class="chip" onclick="showIoT('finance')">
+                <h4>電子銀行／支付</h4>
+                <p>網上銀行即時查帳；FPS、PPS、PayPal 等數碼支付。</p>
+            </div>
+        </div>
+        <div id="iotInfo" class="info-box">點擊上方卡片了解 IoT 相關應用。</div>
+
+        <h3>香港智慧城市範疇</h3>
+        <ul>
+            <li>經濟、生活、出行、環境、市民、政府 六大方向</li>
+            <li>例：電子支付、遠端工作、交通擠塞管理、環境感測等</li>
+        </ul>
+    </section>
+
+    <!-- 區段二：網上服務與檔案傳輸 -->
+    <section id="services">
+        <h2>3.2 網上服務與檔案傳輸</h2>
+
+        <div class="badge">電子郵件</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>電郵結構</h3>
+                <p>電郵地址 = 用戶名 + @ + 網域名稱；可跨平台隨時開啟。</p>
+                <p>收件欄位：<strong>To</strong>（主要收件者）、<strong>Cc</strong>（副本，多人參考）、<strong>Bcc</strong>（密件副本，其他人看不到）。</p>
+            </div>
+            <div class="card">
+                <h3>附件方式</h3>
+                <ul>
+                    <li>附件：把檔案與郵件一同傳送。</li>
+                    <li>內置：例如把圖像嵌入郵件內容。</li>
+                    <li>超連結：連結到儲存檔案的網站，減少郵件大小。</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>垃圾郵件處理</h3>
+                <p>AI 可檢測垃圾郵件；用戶可標示垃圾/非垃圾、建立許可清單（核准寄件者）或拒絕清單（封鎖寄件者）。</p>
+            </div>
+        </div>
+
+        <h3>互動：選擇電郵欄位</h3>
+        <label for="emailField">欄位</label>
+        <select id="emailField">
+            <option value="to">收件者（To）</option>
+            <option value="cc">副本（Cc）</option>
+            <option value="bcc">密件副本（Bcc）</option>
+        </select>
+        <div id="emailInfo" class="info-box"></div>
+
+        <div class="badge" style="margin-top:18px;">遠程登入</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>定義與用途</h3>
+                <p>透過互聯網或 LAN 遙距操控另一裝置。可利用學校或公司的資源、使用授權軟件、存取只允許特定 IP 的資料。</p>
+            </div>
+            <div class="card">
+                <h3>優點與局限</h3>
+                <ul>
+                    <li>優點：更強硬件、無需額外付費、使用內部資源。</li>
+                    <li>局限：需 VPN/遠端桌面軟件、可能受連線或硬件影響、需資料加密與雙重驗證。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="badge" style="margin-top:18px;">網上聊天與社交網站</div>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>網上聊天</h3>
+                <p>容許個人或群組以文本、音訊、圖像、視像等多媒體即時溝通，並支援 SOHO 遠程工作。</p>
+            </div>
+            <div class="card">
+                <h3>社交網站</h3>
+                <p>讓用戶以數碼媒體分享個人經驗與想法，維繫聯繫。論壇與留言板提供問答與主題分享；網誌由作者發佈主題。</p>
+            </div>
+        </div>
+
+        <div class="badge" style="margin-top:18px;">檔案傳輸</div>
+        <p>選擇傳送方法時須考慮：檔案大小、檔案格式、安全性。</p>
+        <ul class="transfer-list">
+            <li><strong>即時通訊：</strong>方便但會自動壓縮；適合小型檔案。</li>
+            <li><strong>電子郵件：</strong>可附檔或超連結；有限制大小。</li>
+            <li><strong>網上儲存 / 雲端磁碟：</strong>保留原始品質，可集中管理。</li>
+            <li><strong>公司網路磁碟機：</strong>支援大檔案、供多人存取。</li>
+            <li><strong>點對點（P2P）：</strong>用戶越多速度越快，不依賴中央伺服器。</li>
+        </ul>
+
+        <h3>互動：檔案傳輸建議</h3>
+        <label for="transferNeed">需求</label>
+        <select id="transferNeed">
+            <option value="small">小型檔案（<5MB），快速傳送</option>
+            <option value="large">大型檔案需保留高品質</option>
+            <option value="team">多人共用並集中管理</option>
+            <option value="p2p">無中央伺服器、用戶越多越快</option>
+        </select>
+        <div id="transferInfo" class="info-box"></div>
+    </section>
+
+    <!-- 區段三：資訊搜尋 -->
+    <section id="search">
+        <h2>3.3 資訊搜尋</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>搜尋四步驟</h3>
+                <ol>
+                    <li>確定資訊需求</li>
+                    <li>選擇搜尋工具（搜尋器或數據庫）</li>
+                    <li>使用搜尋策略尋找資料</li>
+                    <li>評估資訊可靠性</li>
+                </ol>
+            </div>
+            <div class="card">
+                <h3>搜尋工具</h3>
+                <p>搜尋器（Google、Bing、Yahoo!、DuckDuckGo）用於 WWW；數據庫提供較可靠的學術資訊。</p>
+            </div>
+        </div>
+
+        <h3>搜尋策略</h3>
+        <div class="chip-row">
+            <div class="chip" onclick="showSearch('keywords')">
+                <h4>同義關鍵字</h4>
+                <p>使用不同字詞表達同一概念。</p>
+            </div>
+            <div class="chip" onclick="showSearch('quotes')">
+                <h4>引號 ""</h4>
+                <p>鎖定完整詞組。</p>
+            </div>
+            <div class="chip" onclick="showSearch('filters')">
+                <h4>篩選條件</h4>
+                <p>限定日期、類型、網站。</p>
+            </div>
+        </div>
+        <div id="searchInfo" class="info-box">點擊策略查看示例。</div>
+
+        <h3>資訊可靠性檢查</h3>
+        <div class="checklist">
+            <label><input type="checkbox" checked disabled /> 來源可信（官方 / 學術機構）</label>
+            <label><input type="checkbox" checked disabled /> 作者資料清晰</label>
+            <label><input type="checkbox" checked disabled /> 發佈日期合時宜</label>
+            <label><input type="checkbox" checked disabled /> 多方事實驗證</label>
+            <label><input type="checkbox" checked disabled /> 避免偏見、仿冒網站</label>
+        </div>
+    </section>
+
+    <!-- 區段四：網絡多媒體與插件 -->
+    <section id="media">
+        <h2>3.4 網絡多媒體與插件</h2>
+        <p>多媒體能提高網頁吸引力並配合不同學習風格，協助有學習障礙的用戶。</p>
+
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>圖像</h3>
+                <p>可用作按鈕、橫額、背景等。常見格式：PNG（高品質、截圖）、GIF（動畫）、JPG（相片）、SVG（向量）。</p>
+            </div>
+            <div class="card">
+                <h3>音效</h3>
+                <p>應用於音樂串流、字典、網絡電台、HTML 遊戲音效等。</p>
+            </div>
+            <div class="card">
+                <h3>視像</h3>
+                <p>常見於首頁、產品介紹、網誌；需選擇合適格式及 codec（如 MP4、WebM）。</p>
+            </div>
+            <div class="card">
+                <h3>瀏覽器插件與媒體播放器</h3>
+                <p>插件（擴充套件）為瀏覽器/系統提供額外功能或支援新格式；媒體播放器需要相容的 codec 才能播放音視訊內容。</p>
+            </div>
+        </div>
+
+        <h3>互動：格式建議</h3>
+        <label for="formatSelect">選擇情境</label>
+        <select id="formatSelect">
+            <option value="screenshot">放在網誌的螢幕截圖</option>
+            <option value="animation">簡單動畫或圖示</option>
+            <option value="photography">照片作品集</option>
+            <option value="vector">可無損縮放的圖像</option>
+        </select>
+        <div id="formatInfo" class="info-box"></div>
+    </section>
+
+    <!-- 區段五：串流傳輸 -->
+    <section id="streaming">
+        <h2>3.5 串流傳輸</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>串流定義</h3>
+                <p>媒體檔案分割成小部分，用戶可在播放時同時下載，其餘部分由串流伺服器緩衝，無須等待整個檔案下載。</p>
+            </div>
+            <div class="card">
+                <h3>串流流程</h3>
+                <ol>
+                    <li>取得視像 / 音訊原始檔案</li>
+                    <li>編輯或直接編碼成合適格式</li>
+                    <li>上載至串流平台並設定權限</li>
+                    <li>用戶在瀏覽器或應用程式播放</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="badge" style="margin-top:16px;">應用</div>
+        <ul>
+            <li>即時通訊 Apps：語音訊息、語音通話透過串流傳輸。</li>
+            <li>視像會議：傳送聲音與視像，促進遠程工作與學習。</li>
+            <li>網上廣播：電台、電視節目、遊戲直播。</li>
+        </ul>
+
+        <h3>技術因素與限制</h3>
+        <div class="slider-wrap">
+            <label for="bandwidthRange">模擬頻寬（單位：Mbps）</label>
+            <input type="range" id="bandwidthRange" min="1" max="30" value="10" />
+            <div id="bandwidthInfo" class="info-box">頻寬 10 Mbps：可支援一般 HD 串流，對 4K 視像可能不足。</div>
+        </div>
+    </section>
+</main>
+
+<script>
+const iotInfo = document.getElementById("iotInfo");
+const iotNotes = {
+    cloud: "物聯網每秒產生大量數據，雲端運算可透過互聯網即時儲存及處理，並支援協作工具讓用戶實時共享與編輯文件。",
+    smartcity: "智慧城市利用 IoT + 雲端技術改善環境可持續性、交通擠塞、廢物管理、人口老化等。香港以經濟、生活、出行、環境、市民、政府六範疇推行。",
+    finance: "網上銀行讓客戶無須等月結單即可查看最新交易；數碼支付（FPS、PPS、PayPal 等）可為電子錢包充值或連接信用卡與銀行戶口。"
+};
+function showIoT(key) { iotInfo.textContent = iotNotes[key]; }
+
+const emailInfo = document.getElementById("emailInfo");
+const emailNotes = {
+    to: "收件者（To）：主要接收者，需對郵件內容採取行動或知悉事件。",
+    cc: "副本（Cc）：提供參考，讓其他人同步了解內容，所有收件者都看得到。",
+    bcc: "密件副本（Bcc）：讓寄件人私下發送副本，其他收件者看不到此欄位，有助保護隱私。"
+};
+document.getElementById("emailField").addEventListener("change", e => {
+    emailInfo.textContent = emailNotes[e.target.value];
+});
+emailInfo.textContent = emailNotes["to"];
+
+const transferInfo = document.getElementById("transferInfo");
+const transferNotes = {
+    small: "建議：即時通訊或電子郵件附件。適合小型檔案並可迅速回覆。",
+    large: "建議：雲端儲存或公司網路磁碟機，以保持原始品質並支援大型檔案。",
+    team: "建議：公司網路磁碟機或共享雲端資料夾，集中管理並供多人存取。",
+    p2p: "建議：點對點（P2P）傳輸，使用者越多傳輸越快，即使中央伺服器故障仍可下載。"
+};
+document.getElementById("transferNeed").addEventListener("change", e => {
+    transferInfo.textContent = transferNotes[e.target.value];
+});
+transferInfo.textContent = transferNotes["small"];
+
+const searchInfo = document.getElementById("searchInfo");
+const searchNotes = {
+    keywords: "同義字策略：例如搜尋「數碼支付」也可以試「電子支付」、「網上付款」以擴展結果。",
+    quotes: "引號策略：「“梳乎厘班戟”食譜」可鎖定完整詞組，避免出現不相關的結果。",
+    filters: "篩選策略：使用日期、檔案類型、site:域名 等條件，快速收窄最相關的結果。"
+};
+function showSearch(key) { searchInfo.textContent = searchNotes[key]; }
+
+const formatInfo = document.getElementById("formatInfo");
+const formatNotes = {
+    screenshot: "螢幕截圖建議使用 PNG，能清晰顯示文字與介面細節。",
+    animation: "簡單動畫或圖示建議使用 GIF。",
+    photography: "照片作品集可使用 JPG，以較少檔案大小保存相片。",
+    vector: "需要無損縮放時使用 SVG（向量圖）。"
+};
+document.getElementById("formatSelect").addEventListener("change", e => {
+    formatInfo.textContent = formatNotes[e.target.value];
+});
+formatInfo.textContent = formatNotes["screenshot"];
+
+const bandwidthInfo = document.getElementById("bandwidthInfo");
+document.getElementById("bandwidthRange").addEventListener("input", e => {
+    const val = Number(e.target.value);
+    let msg = `頻寬 ${val} Mbps：`;
+    if (val < 5) msg += "僅適合低解像度串流，高清視像會出現延遲或馬賽克。";
+    else if (val < 15) msg += "可支援 HD 串流；4K 可能仍不穩定。";
+    else msg += "足夠高品質及 4K 串流，但仍需考慮位元率與編碼。";
+    bandwidthInfo.textContent = msg;
+});
+
+const dnsInfo = document.getElementById("dnsInfo");
+const dnsNotes = {
+    fqdn: "完整域名（FQDN）包含所有層級，如 www.example.edu.hk。",
+    tld: "頂級域名（TLD）位於最右，可分為通用 gTLD（.com、.edu）和地區 ccTLD（.hk）。",
+    server: "DNS 伺服器將網域名稱解析為 IP 位址，其位置以 IP 表示，通常由 ISP 提供。"
+};
+document.getElementById("dnsSelect").addEventListener("change", e => {
+    dnsInfo.textContent = dnsNotes[e.target.value];
+});
+dnsInfo.textContent = dnsNotes["fqdn"];
+
+const urlInfo = document.getElementById("urlInfo");
+function parseUrl(value) {
+    try {
+        const u = new URL(value);
+        const port = u.port || "(預設埠)";
+        return `協定：${u.protocol.替换(":", "")}｜主機：${u.hostname}｜埠號：${port}｜路徑：${u.pathname || "/"}`;
+    } catch {
+        return "此 URL 無效（可能缺少必要部分）。";
+    }
+}
+const urlSelect = document.getElementById("urlSelect");
+urlSelect.addEventListener("change", e => urlInfo.textContent = parseUrl(e.target.value));
+urlInfo.textContent = parseUrl(urlSelect.value);
+
+const protocolInfo = document.getElementById("protocolInfo");
+const protocolNotes = {
+    https: "HTTPS：HTTP 加上 SSL/TLS 加密，確保傳輸過程保密、可靠且具私隱性。",
+    smtp: "SMTP：將電子郵件傳送到電郵伺服器，並在伺服器之間分發郵件。",
+    pop3: "POP3：將郵件下載至本機，預設下載後從伺服器刪除。",
+    imap: "IMAP：郵件保留在伺服器，可於多個裝置同步管理郵件。"
+};
+function showProtocol(key) { protocolInfo.textContent = protocolNotes[key]; }
+</script>
+</body>
+</html>

@@ -140,6 +140,17 @@
         section { padding: 20px; }
         table { font-size: 0.93rem; }
     }
+    .img-wrap {
+    width: 100%;
+    max-width: 320px;       /* 依需要調整 */
+    margin: 0 auto 12px;    /* 置中並留邊距 */
+    }
+    .img-wrap img {
+    width: 100%;            /* 讓圖片填滿容器 */
+    height: auto;           /* 保持比例 */
+    object-fit: contain;
+    display: block;
+    }
 </style>
 </head>
 <body>
@@ -171,12 +182,16 @@
         <div class="grid grid-2">
             <div class="card">
                 <h3>局部區域網絡 (LAN) 定義</h3>
-                <img src="./c1_photo/lan.jpeg" alt="局部區域網絡示意圖"/>
+                <div class="img-wrap">
+                    <img src="./c1_photo/lan.jpeg" alt="局部區域網絡示意圖"/>
+                </div>
                 <p>覆蓋家庭、辦公室或學校等較小地理面積的網絡，裝置可直接連接形成。</p>
             </div>
             <div class="card">
                 <h3>寬廣區域網絡 (WAN) 定義</h3>
-                <img src="./c1_photo/wan.jpg" alt="寬廣區域網絡示意圖"/>
+                <div class="img-wrap">
+                    <img src="./c1_photo/wan.jpg" alt="寬廣區域網絡示意圖"/>
+                </div>
                 <p>由許多 LAN 組成，覆蓋市鎮或國家等大片範圍；裝置通常經互聯網服務供應商連接。</p>
             </div>
         </div>
